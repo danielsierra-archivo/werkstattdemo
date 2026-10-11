@@ -9,6 +9,7 @@ Cuatro páginas de práctica con contenido de ejemplo, hechas para comparar enfo
 | `impeccable/` | Guías de la skill Impeccable |
 | `rediseno-demo-v1/` | Demo v1 mejorada con la auditoría de redesign-existing-projects (Taste Skill) |
 | `demo-v2/` y `demo-v2-b/` | Combinación elegida: estructura y movimiento de high-end, 2026 de puntos y títulos grandes de brutalist, regla con centímetros de Impeccable. A: títulos en Cormorant. B: títulos en Archivo Black |
+| `catalogo/` | Catálogo de efectos con código fijo por pieza (N-01, B-03...). Lista de códigos en `catalogo/CODIGOS.md` |
 
 ## Créditos y licencias
 

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Werkstatt | Catálogo de efectos</title>
+<meta name="description" content="Catálogo de prueba con efectos, botones, animaciones y texturas, cada uno con su código. Contenido ficticio.">
+<link rel="icon" href="../assets/logo/marca-positivo.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Cormorant";src:url("../fonts/cormorant-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant";src:url("../fonts/cormorant-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Cormorant";src:url("../fonts/cormorant-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Nothing You Could Do";src:url("../fonts/nothing-you-could-do-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo Black";src:url("../fonts/archivo-black-latin-400-normal.woff2") format("woff2");font-weight:400;font-display:swap}
+:root{
+  --cream:#FDFBF7;--linen:#F5EFE4;--core:#FFFEFB;--espresso:#2A211B;--soft:#6B5E52;--sage:#8E9C86;--sage-deep:#566451;
+  --ring:rgba(42,33,27,.1);--shell:rgba(42,33,27,.04);--ease:cubic-bezier(.32,.72,0,1);--out:cubic-bezier(.16,1,.3,1);
+  --serif:"Cormorant",Georgia,serif;--macro:"Archivo Black","Arial Black",Impact,sans-serif;--sans:"Inter",system-ui,sans-serif;--sign:"Nothing You Could Do","Segoe Script",cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:90px}
+body{margin:0;background:var(--cream);color:var(--espresso);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--sage);color:var(--espresso)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sage-deep);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1320px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3,h4,p{margin:0}
+.tag{display:inline-flex;align-items:center;font:500 .625rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:.45rem .8rem;border-radius:999px;background:var(--shell);box-shadow:0 0 0 1px var(--ring) inset;color:var(--soft)}
+
+/* Cabecera del catálogo */
+.top{padding:clamp(3rem,7vw,6rem) 0 2rem}
+.top h1{font:400 clamp(3rem,9vw,8rem)/.9 var(--macro);text-transform:uppercase;letter-spacing:-.045em;margin:1.2rem 0 1.5rem}
+.top p{max-width:60ch;color:var(--soft)}
+.top code{font:500 .85em var(--sans);background:var(--shell);padding:.1em .45em;border-radius:6px;box-shadow:0 0 0 1px var(--ring) inset}
+
+/* Barra pegajosa: categorías y lista */
+.bar{position:sticky;top:0;z-index:40;background:rgba(253,251,247,.8);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-block:1px solid var(--ring)}
+.bar .wrap{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.7rem}
+.filters{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;padding-block:2px}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:none;border:0;background:var(--shell);box-shadow:0 0 0 1px var(--ring) inset;color:var(--soft);font:500 .8125rem/1 var(--sans);padding:.65rem .95rem;border-radius:999px;cursor:pointer;transition:background-color .4s var(--ease),color .4s var(--ease)}
+.filters button:hover{color:var(--espresso)}
+.filters button[aria-pressed=true]{background:var(--espresso);color:var(--cream);box-shadow:none}
+.mylist{flex:none;display:flex;align-items:center;gap:.6rem}
+.mylist output{font:500 .8125rem var(--sans);color:var(--soft);max-width:26ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mylist button{border:0;background:var(--espresso);color:var(--cream);font:500 .8125rem/1 var(--sans);padding:.7rem 1rem;border-radius:999px;cursor:pointer}
+.mylist button:disabled{opacity:.4;cursor:not-allowed}
+@media (max-width:760px){.bar .wrap{flex-direction:column;align-items:stretch}.mylist{justify-content:space-between}}
+
+/* Secciones y fichas */
+.cat{padding-block:clamp(2.5rem,5vw,4rem) 1rem}
+.cat h2{font:400 clamp(2rem,4vw,3.2rem)/1 var(--serif);letter-spacing:-.02em;display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem}
+.cat h2 small{font:500 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:1.25rem}
+.spec{display:flex;flex-direction:column;border-radius:1.5rem;background:var(--core);box-shadow:0 0 0 1px var(--ring),0 24px 48px -36px rgba(42,33,27,.3);overflow:hidden;min-width:0}
+.spec[hidden]{display:none}
+.spec header{display:flex;align-items:center;gap:.6rem;padding:.9rem 1rem .6rem}
+.code{font:600 .75rem/1 var(--sans);letter-spacing:.08em;background:var(--espresso);color:var(--cream);padding:.4rem .6rem;border-radius:.5rem}
+.spec h3{font:600 .9375rem/1.25 var(--sans);flex:1;min-width:0}
+.fav,.rep{flex:none;width:2.25rem;height:2.25rem;border:0;border-radius:50%;background:var(--shell);color:var(--soft);display:grid;place-items:center;cursor:pointer;transition:background-color .4s var(--ease),color .4s var(--ease)}
+.fav:hover,.rep:hover{background:rgba(42,33,27,.1);color:var(--espresso)}
+.fav svg,.rep svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.fav[aria-pressed=true]{background:var(--sage-deep);color:var(--cream)}
+.fav[aria-pressed=true] svg{fill:currentColor}
+.stage{position:relative;margin:0 .6rem;border-radius:1rem;background:var(--linen);box-shadow:0 0 0 1px var(--ring) inset;min-height:220px;display:grid;place-items:center;padding:1.25rem;overflow:hidden}
+.note{padding:.8rem 1rem 0;font-size:.875rem;color:var(--soft);flex:1}
+.meta{display:flex;gap:.4rem;flex-wrap:wrap;padding:.7rem 1rem 1rem}
+.meta span{font:500 .6875rem/1 var(--sans);letter-spacing:.06em;padding:.4rem .6rem;border-radius:999px;background:var(--shell);color:var(--soft);box-shadow:0 0 0 1px var(--ring) inset}
+.meta .v2{background:var(--sage);color:var(--espresso);box-shadow:none}
+
+/* ===== N: números y texturas */
+.dots-text,.hatch-text,.outline-text{font:400 clamp(4.5rem,9vw,6.5rem)/1 var(--macro);letter-spacing:-.05em;color:transparent;-webkit-background-clip:text;background-clip:text}
+.dots-text{background-image:radial-gradient(circle,var(--sage-deep) 40%,transparent 43%);background-size:7px 7px}
+.hatch-text{background-image:repeating-linear-gradient(45deg,var(--espresso) 0 2px,transparent 2px 7px)}
+.outline-text{-webkit-text-stroke:2px var(--espresso);transition:color .6s var(--ease);cursor:default}
+.outline-text:hover{color:var(--espresso)}
+canvas.halftone{width:100%;max-width:300px;height:130px}
+canvas.dotgrid{position:absolute;inset:0;width:100%;height:100%}
+.stats{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center}
+.stats b{font:500 3rem/1 var(--serif);display:block;font-variant-numeric:tabular-nums}
+.stats span{font:500 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.odo{display:flex;font:400 4.2rem/1 var(--macro);height:1em;overflow:hidden;letter-spacing:-.04em}
+.odo .d{display:block;height:1em;overflow:hidden}
+.odo .d i{display:block;font-style:normal;transition:transform 1.6s var(--out)}
+.odo .d i b{display:block;height:1em;font-weight:400;text-align:center}
+.cota{width:100%;max-width:300px;text-align:center}
+.cota svg{width:100%;display:block;overflow:visible}
+.cota .c line{stroke:var(--sage-deep);stroke-width:1.5}
+.cota span{display:block;font:500 .8125rem var(--sans);color:var(--sage-deep);letter-spacing:.06em;font-variant-numeric:tabular-nums;margin-top:.2rem}
+.pnum b{display:block;font:400 4rem/1 var(--macro);letter-spacing:-.05em}
+.pnum span{font:500 .6875rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+
+/* ===== T: texto */
+.macro-t{font:400 clamp(2rem,4vw,2.9rem)/.92 var(--macro);text-transform:uppercase;letter-spacing:-.045em}
+.serif-t{font:400 clamp(2.2rem,4vw,3rem)/.95 var(--serif);letter-spacing:-.02em;text-align:center}
+.serif-t em{color:var(--sage-deep)}
+.lines-t{font:400 2.4rem/1.05 var(--serif)}
+.lines-t span{display:block;overflow:hidden;padding-bottom:.12em}
+.lines-t i{display:block;font-style:italic;transition:transform 1.1s var(--out)}
+.js .stage:not(.go) .lines-t i{transform:translateY(110%)}
+.lines-t span:nth-child(2) i{transition-delay:.1s}.lines-t span:nth-child(3) i{transition-delay:.2s}
+.letters-t{font:400 3.4rem/1 var(--macro);letter-spacing:-.04em;text-transform:uppercase}
+.letters-t span{display:inline-block;transition:transform .9s var(--out),opacity .9s var(--out);transition-delay:calc(var(--i)*50ms)}
+.js .stage:not(.go) .letters-t span{transform:translateY(60%) rotate(6deg);opacity:0}
+.ul-link{font:500 1.05rem var(--sans);text-decoration:none;background:linear-gradient(currentColor,currentColor) left bottom/0 1px no-repeat;padding-bottom:3px;transition:background-size .5s var(--out)}
+.ul-link:hover,.ul-link:focus-visible{background-size:100% 1px}
+.mark-t{font:400 1.8rem/1.3 var(--serif);text-align:center;max-width:22ch}
+.mk{background:linear-gradient(transparent 58%,rgba(142,156,134,.55) 58%) left/0 100% no-repeat;transition:background-size 1.1s var(--out) .2s}
+.stage.go .mk,html:not(.js) .mk{background-size:100% 100%}
+.marq{width:100%;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq div{display:flex;gap:2.5rem;width:max-content;animation:marq 22s linear infinite}
+.marq:hover div{animation-play-state:paused}
+.marq span{font:400 2.2rem/1 var(--serif);font-style:italic;white-space:nowrap}
+.marq span::after{content:"·";margin-left:2.5rem;color:var(--sage-deep)}
+@keyframes marq{to{transform:translateX(-50%)}}
+.sig-t{font:400 2.8rem/1.2 var(--sign);clip-path:inset(-.3em -.1em -.3em -.1em);transition:clip-path 1.8s var(--out)}
+.js .stage:not(.go) .sig-t{clip-path:inset(-.3em 100% -.3em -.1em)}
+.fill-t{font:500 1.9rem/1.2 var(--serif);max-width:20ch;background:linear-gradient(90deg,var(--espresso),var(--espresso)) left/var(--p,0%) 100% no-repeat,linear-gradient(90deg,rgba(42,33,27,.2),rgba(42,33,27,.2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ===== B: botones */
+.btn{display:inline-flex;align-items:center;gap:1rem;padding:.5rem .5rem .5rem 1.5rem;border-radius:999px;border:0;background:var(--espresso);color:var(--cream);font:500 .9rem/1 var(--sans);text-decoration:none;cursor:pointer;transition:transform .7s var(--ease),background-color .7s var(--ease);box-shadow:0 14px 28px -16px rgba(42,33,27,.5)}
+.btn .ico{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:rgba(253,251,247,.14);transition:transform .7s var(--ease)}
+.btn svg{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{background:#3a2e26}.btn:hover .ico{transform:translate(2px,-1px) scale(1.06)}.btn:active{transform:scale(.98)}
+.btn.sm{padding:.3rem .3rem .3rem 1rem;font-size:.8125rem}.btn.sm .ico{width:1.8rem;height:1.8rem}
+.btn.off{background:rgba(42,33,27,.08);color:var(--soft);box-shadow:none;cursor:not-allowed;outline:1px dashed rgba(42,33,27,.3);outline-offset:-1px}
+.btn.off:active{transform:none}
+.btn-wipe{position:relative;overflow:hidden;display:inline-block;padding:1rem 1.8rem;border-radius:999px;border:1px solid var(--espresso);text-decoration:none;font:500 .9rem/1 var(--sans);isolation:isolate;transition:color .5s var(--ease)}
+.btn-wipe::before{content:"";position:absolute;inset:0;background:var(--espresso);transform:translateY(101%);transition:transform .6s var(--ease);z-index:-1;border-radius:inherit}
+.btn-wipe:hover,.btn-wipe:focus-visible{color:var(--cream)}.btn-wipe:hover::before,.btn-wipe:focus-visible::before{transform:none}
+.mag{transition:transform .25s ease-out,background-color .7s var(--ease)}
+.btn-hard{display:inline-block;padding:1rem 1.6rem;background:var(--cream);color:var(--espresso);border:2px solid var(--espresso);border-radius:0;text-decoration:none;font:400 .85rem/1 var(--macro);text-transform:uppercase;letter-spacing:.04em;box-shadow:5px 5px 0 var(--espresso);transition:transform .15s,box-shadow .15s}
+.btn-hard:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--espresso)}.btn-hard:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--espresso)}
+.arrow-link{display:inline-flex;align-items:center;gap:.8rem;text-decoration:none;font:500 1rem var(--sans)}
+.arrow-link svg{width:2.2rem;height:.7rem;fill:none;stroke:currentColor;stroke-width:1.2;transition:transform .5s var(--ease),width .5s var(--ease)}
+.arrow-link:hover svg{width:3.4rem;transform:translateX(2px)}
+.btn-roll{display:inline-block;padding:1rem 1.8rem;border-radius:999px;background:var(--espresso);color:var(--cream);text-decoration:none;font:500 .9rem/1 var(--sans);overflow:hidden}
+.btn-roll span{display:block;position:relative;transition:transform .5s var(--ease)}
+.btn-roll span::after{content:attr(data-t);position:absolute;left:0;top:100%}
+.btn-roll:hover span,.btn-roll:focus-visible span{transform:translateY(-100%)}
+.btn-draw{position:relative;display:inline-block;padding:1rem 1.8rem;text-decoration:none;font:500 .9rem/1 var(--sans)}
+.btn-draw svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.btn-draw rect{fill:none;stroke:var(--espresso);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .9s var(--out)}
+.btn-draw:hover rect,.btn-draw:focus-visible rect{stroke-dashoffset:0}
+.btn-draw::before{content:"";position:absolute;inset:0;border-radius:999px;box-shadow:0 0 0 1px var(--ring) inset}
+.btn-state{position:relative;min-width:9rem;height:3rem;border:0;border-radius:999px;background:var(--espresso);color:var(--cream);font:500 .9rem var(--sans);cursor:pointer;overflow:hidden;transition:background-color .5s var(--ease),transform .4s var(--ease)}
+.btn-state:active{transform:scale(.97)}
+.btn-state span{position:absolute;inset:0;display:grid;place-items:center;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.btn-state .s1,.btn-state .s2{opacity:0;transform:translateY(60%)}
+.btn-state .s1 i{width:1.1rem;height:1.1rem;border:2px solid rgba(253,251,247,.3);border-top-color:var(--cream);border-radius:50%;animation:spin .8s linear infinite}
+.btn-state[data-state=load] .s0,.btn-state[data-state=done] .s0{opacity:0;transform:translateY(-60%)}
+.btn-state[data-state=load] .s1{opacity:1;transform:none}
+.btn-state[data-state=done]{background:var(--sage-deep)}
+.btn-state[data-state=done] .s2{opacity:1;transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== C: tarjetas */
+.bezel{width:100%;max-width:260px;padding:.5rem;border-radius:2rem;background:var(--shell);box-shadow:0 0 0 1px var(--ring)}
+.core{border-radius:1.5rem;background:var(--core);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 30px 60px -40px rgba(42,33,27,.35);padding:1.4rem;display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}
+.core h4{font:400 1.7rem/1.05 var(--serif)}.core p{color:var(--soft);font-size:.9rem}
+.bezel.dark{background:rgba(42,33,27,.12)}.bezel.dark .core{background:var(--espresso);color:var(--cream)}.bezel.dark .core p{color:rgba(253,251,247,.7)}
+.tilt{perspective:700px;width:100%;max-width:240px}
+.tilt .core{transition:transform .3s ease-out;transform-style:preserve-3d;box-shadow:0 0 0 1px var(--ring),0 30px 40px -30px rgba(42,33,27,.4)}
+.spot{position:relative;width:100%;max-width:250px;padding:1.4rem;border-radius:1.5rem;background:var(--espresso);color:var(--cream);overflow:hidden;--mx:50%;--my:50%}
+.spot::before{content:"";position:absolute;inset:0;background:radial-gradient(180px circle at var(--mx) var(--my),rgba(142,156,134,.4),transparent 70%);pointer-events:none}
+.spot h4{font:400 1.7rem/1.05 var(--serif);position:relative}.spot p{position:relative;color:rgba(253,251,247,.7);font-size:.9rem;margin-top:.5rem}
+.hoverplan{width:100%;max-width:230px}.hoverplan .core{align-items:center}
+svg.mini{width:100%;height:auto}svg.mini .w{fill:none;stroke:var(--espresso);stroke-width:2.2}svg.mini .t{fill:none;stroke:var(--sage-deep);stroke-width:1.2}
+.hoverplan .ghost *{stroke:var(--ring);stroke-width:1.5}
+.hoverplan .live .w,.hoverplan .live .t,.drawplan .w,.drawplan .t{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--out)}
+.hoverplan .core:not(:hover) .live .w,.hoverplan .core:not(:hover) .live .t{stroke-dashoffset:1}
+.hoverplan h4{font-size:1.2rem}
+.acc{width:100%;max-width:300px}
+.acc details{border-top:1px solid var(--ring)}.acc details:last-child{border-bottom:1px solid var(--ring)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.9rem;font-weight:500;font-size:.95rem;min-height:44px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"";flex:none;width:12px;height:12px;background:linear-gradient(currentColor,currentColor) center/100% 1.5px no-repeat,linear-gradient(currentColor,currentColor) center/1.5px 100% no-repeat;transition:transform .5s var(--ease)}
+.acc details[open] summary::after{transform:rotate(135deg)}
+.acc p{color:var(--soft);font-size:.9rem;padding-bottom:.9rem}
+:root{interpolate-size:allow-keywords}
+.acc details::details-content{block-size:0;overflow:hidden;transition:block-size .45s var(--ease),content-visibility .45s allow-discrete}
+.acc details[open]::details-content{block-size:auto}
+.caj{width:100%;max-width:260px;border:1px solid var(--espresso);padding:1rem;background:var(--cream)}
+.caj .n{font:600 .75rem var(--sans);letter-spacing:.1em;color:var(--sage-deep)}
+.caj h4{font:500 1.5rem/1.1 var(--serif);margin:.2rem 0 .8rem}
+.caj dl{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;margin:0;font-size:.8rem;border-top:1px solid var(--espresso);padding-top:.6rem}
+.caj dt{color:var(--soft)}.caj dd{margin:0}
+
+/* ===== A: animaciones */
+.blurrise p{font:400 2rem/1.2 var(--serif);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);transition-delay:calc(var(--i,0)*120ms)}
+.js .stage:not(.go) .blurrise p{opacity:0;transform:translateY(2.5rem);filter:blur(10px)}
+.drawplan{width:100%;max-width:230px}
+.js .stage:not(.go) .drawplan .w,.js .stage:not(.go) .drawplan .t{stroke-dashoffset:1}
+.growcota{width:100%;max-width:280px;text-align:center}
+.growcota .bar{height:1px;background:var(--sage-deep);transform-origin:left;transition:transform 1.6s var(--out);position:relative;margin-bottom:.6rem}
+.growcota .bar::before,.growcota .bar::after{content:"";position:absolute;top:-8px;width:1px;height:17px;background:var(--sage-deep)}
+.growcota .bar::before{left:0}.growcota .bar::after{right:0}
+.js .stage:not(.go) .growcota .bar{transform:scaleX(0)}
+.growcota b{font:500 2.2rem var(--serif);font-variant-numeric:tabular-nums}
+.stag{list-style:none;margin:0;padding:0;width:100%;max-width:240px}
+.stag li{padding:.7rem 0;border-bottom:1px solid var(--ring);font:500 1.05rem var(--sans);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+.js .stage:not(.go) .stag li{opacity:0;transform:translateX(-1.5rem)}
+.curtain{width:100%;max-width:240px}
+.curtain div{aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(135deg,rgba(42,33,27,.14) 0 1px,transparent 1px 12px),#E3DED1;color:var(--soft);font-size:.8rem;clip-path:inset(0);transition:clip-path 1.3s var(--out)}
+.js .stage:not(.go) .curtain div{clip-path:inset(0 0 100% 0)}
+.growline{width:100%;max-width:260px}
+.growline i{display:block;height:1px;background:var(--espresso);transform-origin:left;transition:transform 1.4s var(--out)}
+.js .stage:not(.go) .growline i{transform:scaleX(0)}
+.growline p{font:500 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;margin-top:.7rem}
+.scalein{width:100%;max-width:220px;transition:transform .9s cubic-bezier(.34,1.4,.64,1),opacity .6s}
+.js .stage:not(.go) .scalein{transform:scale(.92);opacity:0}
+.depth{position:relative;width:100%;height:140px;--dx:0;--dy:0}
+.depth div{position:absolute;inset:0;display:grid;place-items:center;transition:transform .3s ease-out}
+.depth .l1{font:400 3.1rem var(--macro);text-transform:uppercase;letter-spacing:-.05em;color:rgba(42,33,27,.14);transform:translate(calc(var(--dx)*-18px),calc(var(--dy)*-12px))}
+.depth .l2{font:italic 400 2.8rem var(--serif);color:var(--sage-deep);transform:translate(calc(var(--dx)*22px),calc(var(--dy)*16px))}
+
+/* ===== V: navegación */
+.islandwrap{position:absolute;inset:0;display:grid;place-items:center}
+.stripes{position:absolute;inset:0;background:repeating-linear-gradient(120deg,var(--sage-deep) 0 22px,var(--cream) 22px 44px);opacity:.55}
+.island-d{position:relative;display:flex;align-items:center;gap:1.1rem;padding:.4rem .4rem .4rem 1rem;border-radius:999px;background:rgba(253,251,247,.62);-webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);box-shadow:0 0 0 1px var(--ring),0 24px 48px -24px rgba(42,33,27,.35)}
+.island-d img{height:.9rem;width:auto}.island-d nav{display:flex;gap:1rem;font-size:.8rem}.island-d nav a{text-decoration:none;color:var(--soft)}
+.phone{position:relative;width:170px;height:200px;border-radius:1.4rem;background:var(--cream);box-shadow:0 0 0 1px var(--ring);overflow:hidden;display:grid;place-items:center;color:var(--soft);font-size:.8rem}
+.burger-d{position:absolute;top:.7rem;right:.7rem;z-index:3;width:2.4rem;height:2.4rem;border:0;border-radius:50%;background:var(--espresso);cursor:pointer}
+.burger-d i{position:absolute;left:50%;top:50%;width:1rem;height:1.5px;background:var(--cream);transition:transform .6s var(--ease)}
+.burger-d i:first-child{transform:translate(-50%,-3px)}.burger-d i:last-child{transform:translate(-50%,3px)}
+.phone.open .burger-d i:first-child{transform:translate(-50%,0) rotate(45deg)}.phone.open .burger-d i:last-child{transform:translate(-50%,0) rotate(-45deg)}
+.ov{position:absolute;inset:0;z-index:2;background:rgba(253,251,247,.9);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);display:flex;flex-direction:column;justify-content:center;gap:.4rem;padding:1.4rem;clip-path:circle(0 at calc(100% - 1.9rem) 1.9rem);transition:clip-path .8s var(--ease);visibility:hidden}
+.phone.open .ov{clip-path:circle(150% at calc(100% - 1.9rem) 1.9rem);visibility:visible}
+.ov a{font:400 2rem/1.1 var(--serif);text-decoration:none;opacity:0;transform:translateY(1.4rem);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.phone.open .ov a{opacity:1;transform:none}.phone.open .ov a:nth-child(2){transition-delay:.08s}.phone.open .ov a:nth-child(3){transition-delay:.16s}
+.rulerbox,.progbox{position:relative;width:100%;max-width:260px;height:190px;border-radius:.8rem;background:var(--cream);box-shadow:0 0 0 1px var(--ring);overflow:hidden;display:flex}
+.rulerbox .rl{position:relative;flex:none;width:30px;background:var(--cream);box-shadow:1px 0 0 var(--ring);background-image:linear-gradient(var(--espresso) 1px,transparent 1px),linear-gradient(var(--soft) 1px,transparent 1px);background-size:12px 37.795px,6px 3.7795px;background-repeat:repeat-y;background-position:right calc(var(--y,0px)*-1),right calc(var(--y,0px)*-1)}
+.rulerbox output{position:absolute;left:0;bottom:6px;width:30px;padding:.4rem 0;background:var(--cream);color:var(--sage-deep);font:500 .625rem var(--sans);writing-mode:vertical-rl;transform:rotate(180deg);text-align:center}
+.sc{flex:1;overflow-y:auto;scrollbar-width:thin}.sc .in{padding:1rem;display:grid;gap:5rem;height:560px;align-content:start;font:400 1.4rem var(--serif)}
+.progbox{flex-direction:column}.pb{height:3px;background:var(--shell);flex:none}.pb i{display:block;height:100%;width:100%;background:var(--sage-deep);transform:scaleX(var(--p,0));transform-origin:left}
+.slidenav{position:relative;display:flex;gap:.2rem}
+.slidenav a{position:relative;z-index:1;padding:.6rem .9rem;text-decoration:none;font-size:.9rem;color:var(--soft);transition:color .4s}
+.slidenav a:hover{color:var(--espresso)}
+.slidenav i{position:absolute;left:0;bottom:0;height:2px;width:var(--w,0);background:var(--espresso);transform:translateX(var(--x,0));transition:transform .5s var(--ease),width .5s var(--ease)}
+
+/* ===== F: formularios */
+.fl{position:relative;display:block;width:100%;max-width:260px}
+.fl input{width:100%;border:0;border-bottom:1px solid var(--espresso);background:transparent;padding:1.3rem 0 .4rem;font:400 1rem var(--sans);color:var(--espresso);outline:0;border-radius:0}
+.fl span{position:absolute;left:0;top:1.2rem;color:var(--soft);transition:transform .4s var(--ease),font-size .4s var(--ease);transform-origin:left top;pointer-events:none}
+.fl input:focus+span,.fl input:not(:placeholder-shown)+span{transform:translateY(-1rem) scale(.78)}
+.fl input:focus{border-bottom-width:2px;border-color:var(--sage-deep)}
+.todo{width:100%;max-width:240px;border:1px dashed rgba(42,33,27,.35);padding:.9rem 1rem}
+.todo small{display:block;font-size:.75rem;color:var(--soft)}.todo span{font-size:.9rem;color:var(--soft);opacity:.8}
+.sw{display:inline-flex;align-items:center;gap:.8rem;cursor:pointer;font-size:.9rem}
+.sw input{position:absolute;opacity:0}
+.sw i{position:relative;width:3rem;height:1.7rem;border-radius:999px;background:rgba(42,33,27,.15);transition:background-color .5s var(--ease)}
+.sw i::after{content:"";position:absolute;top:.2rem;left:.2rem;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--cream);box-shadow:0 2px 6px rgba(42,33,27,.3);transition:transform .6s cubic-bezier(.34,1.4,.64,1)}
+.sw input:checked+i{background:var(--sage-deep)}.sw input:checked+i::after{transform:translateX(1.3rem)}
+.sw input:focus-visible+i{outline:2px solid var(--sage-deep);outline-offset:3px}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.chips button{border:0;padding:.7rem 1.1rem;border-radius:999px;background:var(--core);box-shadow:0 0 0 1px var(--ring) inset;color:var(--soft);font:500 .875rem var(--sans);cursor:pointer;transition:background-color .4s var(--ease),color .4s var(--ease),transform .3s}
+.chips button:active{transform:scale(.95)}.chips button.on{background:var(--espresso);color:var(--cream);box-shadow:none}
+
+/* ===== M: ambiente */
+.grain,.mat,.blobs,.dotfade,.curbox{position:absolute;inset:0;display:grid;place-items:center;color:var(--soft);font-size:.9rem}
+.grain::after{content:"";position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.mat{background-color:#17493A;color:#BFD0C3;background-image:linear-gradient(rgba(241,239,228,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(241,239,228,.16) 1px,transparent 1px),linear-gradient(rgba(241,239,228,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(241,239,228,.07) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.blobs{overflow:hidden}.blobs i{position:absolute;width:55%;aspect-ratio:1;border-radius:50%;filter:blur(40px);opacity:.7}
+.blobs i:nth-child(1){background:var(--sage);left:-10%;top:-20%;animation:float1 14s ease-in-out infinite alternate}
+.blobs i:nth-child(2){background:#E3C9A8;right:-10%;bottom:-25%;animation:float2 17s ease-in-out infinite alternate}
+.blobs p{position:relative}
+@keyframes float1{to{transform:translate(40%,30%) scale(1.2)}}@keyframes float2{to{transform:translate(-45%,-25%) scale(1.15)}}
+.curbox{cursor:none}.ring{position:absolute;left:0;top:0;width:2.6rem;height:2.6rem;margin:-1.3rem 0 0 -1.3rem;border:1.5px solid var(--espresso);border-radius:50%;pointer-events:none;opacity:0;transition:opacity .3s,width .3s,height .3s,margin .3s,background-color .3s}
+.curbox:hover .ring{opacity:1}
+.dotfade{background:radial-gradient(circle,var(--espresso) 1.2px,transparent 1.6px) 0 0/14px 14px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent);mask-image:linear-gradient(to bottom,#000,transparent)}
+.dotfade p{display:none}
+.dotfade+*{}
+
+/* ===== D: decoración */
+.warn{width:100%;height:22px;background:repeating-linear-gradient(-45deg,var(--espresso) 0 10px,var(--cream) 10px 20px);border-block:2px solid var(--espresso)}
+.barcode{width:100%;max-width:240px;height:42px;background:repeating-linear-gradient(90deg,var(--espresso) 0 2px,transparent 2px 5px,var(--espresso) 5px 6px,transparent 6px 10px,var(--espresso) 10px 13px,transparent 13px 15px)}
+.reg{position:relative;width:200px;height:120px;display:grid;place-items:center;font-size:.8rem;color:var(--soft)}
+.reg i{position:absolute;width:16px;height:16px}
+.reg i::before,.reg i::after{content:"";position:absolute;background:var(--espresso)}
+.reg i::before{left:7px;top:0;width:2px;height:16px}.reg i::after{top:7px;left:0;height:2px;width:16px}
+.reg i:nth-child(1){left:0;top:0}.reg i:nth-child(2){right:0;top:0}.reg i:nth-child(3){left:0;bottom:0}.reg i:nth-child(4){right:0;bottom:0}
+.brk{font:500 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.ph{width:100%;max-width:240px;aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(135deg,rgba(42,33,27,.14) 0 1px,transparent 1px 14px),#E3DED1;color:var(--soft);font-size:.85rem}
+
+footer{padding:4rem 0 6rem;color:var(--soft);font-size:.8125rem}
+footer p{max-width:70ch}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="tag">Catálogo de efectos · contenido ficticio</span>
+  <h1>Catálogo</h1>
+  <p>Cada pieza tiene un código fijo, por ejemplo <code>N-01</code>. Los códigos no se renumeran: si se agrega algo, entra con el siguiente número de su letra. Marca con la estrella las que te gusten, copia tu lista y mándamela. Las que dicen <b>en demo v2</b> ya están en la demo actual.</p>
+</div></header>
+
+<div class="bar"><div class="wrap">
+  <div class="filters" id="filters" role="group" aria-label="Categorías"><button type="button" data-cat="*" aria-pressed="true">Todo (62)</button><button type="button" data-cat="N" aria-pressed="false">Números y texturas</button><button type="button" data-cat="T" aria-pressed="false">Texto</button><button type="button" data-cat="B" aria-pressed="false">Botones</button><button type="button" data-cat="C" aria-pressed="false">Tarjetas y superficies</button><button type="button" data-cat="A" aria-pressed="false">Animaciones de entrada</button><button type="button" data-cat="V" aria-pressed="false">Navegación</button><button type="button" data-cat="F" aria-pressed="false">Formularios</button><button type="button" data-cat="M" aria-pressed="false">Ambiente y fondos</button><button type="button" data-cat="D" aria-pressed="false">Decoración</button></div>
+  <div class="mylist"><output id="mylist" aria-live="polite">Sin favoritos</output><button type="button" id="copy" disabled>Copiar lista</button></div>
+</div></div>
+
+<main class="wrap">
+<section class="cat" data-cat="N" id="cat-N"><h2>Números y texturas<small>N-01 a N-09</small></h2><div class="grid"><article class="spec" id="N-01"><header><span class="code">N-01</span><h3>Número de puntos (relleno de texto)</h3><button class="fav" type="button" data-code="N-01" aria-pressed="false" aria-label="Favorito N-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="dots-text">2026</span></div><p class="note">Número gigante hecho de puntos uniformes. Funciona como adorno de fondo, nunca como texto que se lee.</p><div class="meta"><span>Origen: brutalist</span><span class="v2">en demo v2</span></div></article><article class="spec" id="N-02"><header><span class="code">N-02</span><h3>Número de puntos con degradado</h3><button class="fav" type="button" data-code="N-02" aria-pressed="false" aria-label="Favorito N-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><canvas class="halftone" data-text="2026" data-mode="fade"></canvas></div><p class="note">Los puntos crecen de izquierda a derecha, como una trama de impresión.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-03"><header><span class="code">N-03</span><h3>Número rayado</h3><button class="fav" type="button" data-code="N-03" aria-pressed="false" aria-label="Favorito N-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="hatch-text">2026</span></div><p class="note">Relleno de líneas diagonales, como un sombreado de plano.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-04"><header><span class="code">N-04</span><h3>Número en contorno</h3><button class="fav" type="button" data-code="N-04" aria-pressed="false" aria-label="Favorito N-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="outline-text">2026</span></div><p class="note">Solo el trazo. Al pasar el cursor se rellena.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-05"><header><span class="code">N-05</span><h3>Contador que sube</h3><button class="rep" type="button" aria-label="Repetir Contador que sube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="N-05" aria-pressed="false" aria-label="Favorito N-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="stats"><div><b data-count="51" data-dec="0">51</b><span>m²</span></div><div><b data-count="9.6" data-dec="2">9.60</b><span>m</span></div><div><b data-count="2026" data-dec="0">2026</b><span>año</span></div></div></div><p class="note">Cuenta hasta su valor al entrar en pantalla.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-06"><header><span class="code">N-06</span><h3>Número de rodillo</h3><button class="rep" type="button" aria-label="Repetir Número de rodillo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="N-06" aria-pressed="false" aria-label="Favorito N-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="odo" data-odo="2026"></div></div><p class="note">Cada dígito gira en su columna hasta llegar al valor, como un odómetro.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-07"><header><span class="code">N-07</span><h3>Cota de plano</h3><button class="rep" type="button" aria-label="Repetir Cota de plano"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="N-07" aria-pressed="false" aria-label="Favorito N-07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="cota"><svg viewBox="0 0 300 40" aria-hidden="true"><g class="c"><line x1="10" y1="22" x2="290" y2="22"/><line x1="10" y1="12" x2="10" y2="32"/><line x1="290" y1="12" x2="290" y2="32"/><line x1="4" y1="28" x2="16" y2="16"/><line x1="284" y1="28" x2="296" y2="16"/></g></svg><span>9.60 m</span></div></div><p class="note">Línea de cota con topes y medida. La línea se traza y la medida aparece después.</p><div class="meta"><span>Origen: impeccable</span></div></article><article class="spec" id="N-08"><header><span class="code">N-08</span><h3>Cuadrícula de puntos reactiva</h3><button class="fav" type="button" data-code="N-08" aria-pressed="false" aria-label="Favorito N-08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><canvas class="dotgrid" aria-hidden="true"></canvas></div><p class="note">Los puntos crecen cerca del cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="N-09"><header><span class="code">N-09</span><h3>Número de proyecto</h3><button class="fav" type="button" data-code="N-09" aria-pressed="false" aria-label="Favorito N-09"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="pnum"><b>P-01</b><span>Vivienda · 51 m²</span></div></div><p class="note">Numeral grande con etiqueta pequeña para índices (P-01, P-02).</p><div class="meta"><span>Origen: brutalist</span></div></article></div></section>
+<section class="cat" data-cat="T" id="cat-T"><h2>Texto<small>T-01 a T-09</small></h2><div class="grid"><article class="spec" id="T-01"><header><span class="code">T-01</span><h3>Titular gigante en mayúsculas</h3><button class="fav" type="button" data-code="T-01" aria-pressed="false" aria-label="Favorito T-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><p class="macro-t">La obra se piensa en el plano.</p></div><p class="note">Archivo Black, interlínea .9, tracking negativo. El peso de la opción B.</p><div class="meta"><span>Origen: brutalist</span><span class="v2">en demo v2</span></div></article><article class="spec" id="T-02"><header><span class="code">T-02</span><h3>Titular editorial con itálica</h3><button class="fav" type="button" data-code="T-02" aria-pressed="false" aria-label="Favorito T-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><p class="serif-t">La obra se piensa en el plano y <em>se entiende en la mano.</em></p></div><p class="note">Cormorant grande y una frase en itálica verde para el énfasis.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="T-03"><header><span class="code">T-03</span><h3>Revelado por líneas</h3><button class="rep" type="button" aria-label="Repetir Revelado por líneas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="T-03" aria-pressed="false" aria-label="Favorito T-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><p class="lines-t"><span><i>Se dibuja,</i></span><span><i>se construye</i></span><span><i>y se prueba.</i></span></p></div><p class="note">Cada línea sube desde una máscara.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="T-04"><header><span class="code">T-04</span><h3>Revelado por letras</h3><button class="rep" type="button" aria-label="Repetir Revelado por letras"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="T-04" aria-pressed="false" aria-label="Favorito T-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><p class="letters-t" data-split>Werkstatt</p></div><p class="note">Las letras entran escalonadas.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="T-05"><header><span class="code">T-05</span><h3>Subrayado que se dibuja</h3><button class="fav" type="button" data-code="T-05" aria-pressed="false" aria-label="Favorito T-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="ul-link" href="#">Ver proyectos de ejemplo</a></div><p class="note">Enlace con línea que crece desde la izquierda al pasar el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="T-06"><header><span class="code">T-06</span><h3>Marcador que barre</h3><button class="rep" type="button" aria-label="Repetir Marcador que barre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="T-06" aria-pressed="false" aria-label="Favorito T-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><p class="mark-t">Lo que funciona y lo que se ve bien casi nunca son <span class="mk">cosas distintas</span>.</p></div><p class="note">Resalte que se traza detrás de una palabra clave.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="T-07"><header><span class="code">T-07</span><h3>Marquesina infinita</h3><button class="fav" type="button" data-code="T-07" aria-pressed="false" aria-label="Favorito T-07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="marq"><div><span>Arquitectura</span><span>Construcción</span><span>Interiorismo</span><span>Muebles</span><span>Ropa de obra</span><span>Arquitectura</span><span>Construcción</span><span>Interiorismo</span><span>Muebles</span><span>Ropa de obra</span></div></div></div><p class="note">Texto que corre sin parar. Se detiene al pasar el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="T-08"><header><span class="code">T-08</span><h3>Firma que se escribe</h3><button class="rep" type="button" aria-label="Repetir Firma que se escribe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="T-08" aria-pressed="false" aria-label="Favorito T-08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><p class="sig-t">Daniel Sierra</p></div><p class="note">Nothing You Could Do con una máscara que la escribe de izquierda a derecha.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="T-09"><header><span class="code">T-09</span><h3>Texto que se llena al bajar</h3><button class="fav" type="button" data-code="T-09" aria-pressed="false" aria-label="Favorito T-09"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><p class="fill-t" data-fill>Primero escucho cómo se va a usar un espacio y solo después decido cómo se ve.</p></div><p class="note">El texto pasa de gris a tinta conforme avanzas por la página.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="B" id="cat-B"><h2>Botones<small>B-01 a B-09</small></h2><div class="grid"><article class="spec" id="B-01"><header><span class="code">B-01</span><h3>Píldora con ícono anidado</h3><button class="fav" type="button" data-code="B-01" aria-pressed="false" aria-label="Favorito B-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn" href="#">Ver obra<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a></div><p class="note">El botón de la v2. El ícono vive en su propio círculo y se mueve al pasar el cursor.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="B-02"><header><span class="code">B-02</span><h3>Relleno que sube</h3><button class="fav" type="button" data-code="B-02" aria-pressed="false" aria-label="Favorito B-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn-wipe" href="#"><span>Ver obra</span></a></div><p class="note">Un color sube desde abajo y cambia el texto.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="B-03"><header><span class="code">B-03</span><h3>Botón magnético</h3><button class="fav" type="button" data-code="B-03" aria-pressed="false" aria-label="Favorito B-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn mag" href="#" data-mag>Escribir<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a></div><p class="note">Sigue al cursor unos píxeles antes de soltarlo.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="B-04"><header><span class="code">B-04</span><h3>Rectángulo con sombra dura</h3><button class="fav" type="button" data-code="B-04" aria-pressed="false" aria-label="Favorito B-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn-hard" href="#">Ver obra</a></div><p class="note">Esquinas rectas y sombra sólida que se hunde al presionar.</p><div class="meta"><span>Origen: brutalist</span></div></article><article class="spec" id="B-05"><header><span class="code">B-05</span><h3>Enlace con flecha deslizante</h3><button class="fav" type="button" data-code="B-05" aria-pressed="false" aria-label="Favorito B-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="arrow-link" href="#">Ver el proceso<svg viewBox="0 0 24 8" aria-hidden="true"><path d="M0 4H22M18 1l4 3-4 3"/></svg></a></div><p class="note">La flecha se estira y avanza al pasar el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="B-06"><header><span class="code">B-06</span><h3>Texto que rueda</h3><button class="fav" type="button" data-code="B-06" aria-pressed="false" aria-label="Favorito B-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn-roll" href="#"><span data-t="Contacto">Contacto</span></a></div><p class="note">El texto sube y entra una copia desde abajo.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="B-07"><header><span class="code">B-07</span><h3>Estado por definir</h3><button class="fav" type="button" data-code="B-07" aria-pressed="false" aria-label="Favorito B-07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="btn off" role="link" aria-disabled="true">Escribir (por definir)<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></span></div><p class="note">Botón desactivado con línea discontinua. Sirve para contenido pendiente.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="B-08"><header><span class="code">B-08</span><h3>Borde que se dibuja</h3><button class="fav" type="button" data-code="B-08" aria-pressed="false" aria-label="Favorito B-08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><a class="btn-draw" href="#"><svg aria-hidden="true"><rect x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="999" pathLength="1"/></svg><span>Ver obra</span></a></div><p class="note">El contorno se traza alrededor del botón al pasar el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="B-09"><header><span class="code">B-09</span><h3>Botón con estados</h3><button class="fav" type="button" data-code="B-09" aria-pressed="false" aria-label="Favorito B-09"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><button class="btn-state" type="button" data-state><span class="s0">Enviar</span><span class="s1" aria-hidden="true"><i></i></span><span class="s2">Listo</span></button></div><p class="note">Reposo, cargando y listo. Pulsa para verlo.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="C" id="cat-C"><h2>Tarjetas y superficies<small>C-01 a C-07</small></h2><div class="grid"><article class="spec" id="C-01"><header><span class="code">C-01</span><h3>Doble bisel</h3><button class="fav" type="button" data-code="C-01" aria-pressed="false" aria-label="Favorito C-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="bezel"><div class="core"><span class="tag">Vivienda</span><h4>Casa en barranca</h4><p>Se acomoda al terreno.</p></div></div></div><p class="note">Carcasa exterior y núcleo interior, como una pieza de hardware.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="C-02"><header><span class="code">C-02</span><h3>Tarjeta con inclinación</h3><button class="fav" type="button" data-code="C-02" aria-pressed="false" aria-label="Favorito C-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="tilt" data-tilt><div class="core"><h4>Mesa de taller 240</h4><p>Mueve el cursor.</p></div></div></div><p class="note">Se inclina en 3D siguiendo el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="C-03"><header><span class="code">C-03</span><h3>Tarjeta con luz</h3><button class="fav" type="button" data-code="C-03" aria-pressed="false" aria-label="Favorito C-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="spot" data-spot><h4>Local de refacciones</h4><p>Pasa el cursor.</p></div></div><p class="note">Un haz de luz sigue al cursor sobre la superficie.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="C-04"><header><span class="code">C-04</span><h3>Plano que se traza al pasar</h3><button class="fav" type="button" data-code="C-04" aria-pressed="false" aria-label="Favorito C-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="hoverplan"><div class="core"><svg class="mini" viewBox="0 0 160 100" aria-hidden="true"><g class="ghost"><path class="w" d="M20 20H140V60H95V85H20Z"/><path class="t" d="M80 20V45M20 60H55M70 60H95M50 60V85"/></g><g class="live"><path class="w" d="M20 20H140V60H95V85H20Z"/><path class="t" d="M80 20V45M20 60H55M70 60H95M50 60V85"/></g></svg><h4>Planta</h4></div></div></div><p class="note">El plano dentro de la tarjeta se dibuja al pasar el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="C-05"><header><span class="code">C-05</span><h3>Acordeón con más animado</h3><button class="fav" type="button" data-code="C-05" aria-pressed="false" aria-label="Favorito C-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="acc"><details><summary>¿Cómo empieza un proyecto?</summary><p>Con una conversación para entender qué necesitas.</p></details><details><summary>¿Cómo se acuerdan los pagos?</summary><p>Cada proyecto se cotiza por separado.</p></details></div></div><p class="note">Pregunta y respuesta. El signo se gira y la respuesta se abre con suavidad.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="C-06"><header><span class="code">C-06</span><h3>Cajetín de plano</h3><button class="fav" type="button" data-code="C-06" aria-pressed="false" aria-label="Favorito C-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="caj"><span class="n">P-02</span><h4>Mesa de taller 240</h4><dl><dt>Tipo</dt><dd>Mueble</dd><dt>Medidas</dt><dd>240 × 90 × 76 cm</dd><dt>Estado</dt><dd>Ejemplo</dd></dl></div></div><p class="note">Ficha con medidas y estado, como el cuadro de datos de una lámina.</p><div class="meta"><span>Origen: impeccable</span></div></article><article class="spec" id="C-07"><header><span class="code">C-07</span><h3>Bisel oscuro</h3><button class="fav" type="button" data-code="C-07" aria-pressed="false" aria-label="Favorito C-07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="bezel dark"><div class="core"><h4>Cuéntame qué quieres resolver.</h4><p>Casa, local o mueble.</p></div></div></div><p class="note">Variante oscura para contacto o llamadas a la acción.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article></div></section>
+<section class="cat" data-cat="A" id="cat-A"><h2>Animaciones de entrada<small>A-01 a A-08</small></h2><div class="grid"><article class="spec" id="A-01"><header><span class="code">A-01</span><h3>Aparición con desenfoque</h3><button class="rep" type="button" aria-label="Repetir Aparición con desenfoque"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-01" aria-pressed="false" aria-label="Favorito A-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="blurrise"><p>Escuchar</p><p>Dibujar</p><p>Construir</p><p>Entregar</p></div></div><p class="note">Sube, se enfoca y se hace visible. Escalonado.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="A-02"><header><span class="code">A-02</span><h3>Plano que se traza</h3><button class="rep" type="button" aria-label="Repetir Plano que se traza"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-02" aria-pressed="false" aria-label="Favorito A-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="drawplan"><svg class="mini" viewBox="0 0 160 100" aria-hidden="true"><path class="w" d="M20 20H140V60H95V85H20Z"/><path class="t" d="M80 20V45M20 60H55M70 60H95M50 60V85"/></svg></div></div><p class="note">Los muros se dibujan y después aparecen cotas y textos.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="A-03"><header><span class="code">A-03</span><h3>Cota que crece</h3><button class="rep" type="button" aria-label="Repetir Cota que crece"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-03" aria-pressed="false" aria-label="Favorito A-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="growcota"><div class="bar"></div><b data-count="9.6" data-dec="2">9.60</b><span> m</span></div></div><p class="note">La línea de cota se extiende y la medida cuenta hasta su valor.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="A-04"><header><span class="code">A-04</span><h3>Lista escalonada</h3><button class="rep" type="button" aria-label="Repetir Lista escalonada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-04" aria-pressed="false" aria-label="Favorito A-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><ul class="stag"><li>Arquitectura</li><li>Construcción</li><li>Interiorismo</li><li>Muebles</li></ul></div><p class="note">Cada fila entra con un pequeño retraso.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="A-05"><header><span class="code">A-05</span><h3>Cortina</h3><button class="rep" type="button" aria-label="Repetir Cortina"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-05" aria-pressed="false" aria-label="Favorito A-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="curtain"><div>Foto pendiente</div></div></div><p class="note">Un bloque se revela con una máscara que se abre.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="A-06"><header><span class="code">A-06</span><h3>Línea que crece</h3><button class="rep" type="button" aria-label="Repetir Línea que crece"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-06" aria-pressed="false" aria-label="Favorito A-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="growline"><i></i><p>Sección</p></div></div><p class="note">Divisor que se traza de izquierda a derecha.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="A-07"><header><span class="code">A-07</span><h3>Entrada con escala</h3><button class="rep" type="button" aria-label="Repetir Entrada con escala"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5"/></svg></button><button class="fav" type="button" data-code="A-07" aria-pressed="false" aria-label="Favorito A-07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage" data-rep><div class="scalein"><div class="bezel"><div class="core"><h4>Obra</h4></div></div></div></div><p class="note">La pieza crece desde 92% con un rebote muy leve.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="A-08"><header><span class="code">A-08</span><h3>Capas con profundidad</h3><button class="fav" type="button" data-code="A-08" aria-pressed="false" aria-label="Favorito A-08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="depth" data-depth><div class="l1">Werk</div><div class="l2">statt</div></div></div><p class="note">Dos capas se mueven distinto con el cursor.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="V" id="cat-V"><h2>Navegación<small>V-01 a V-05</small></h2><div class="grid"><article class="spec" id="V-01"><header><span class="code">V-01</span><h3>Isla flotante translúcida</h3><button class="fav" type="button" data-code="V-01" aria-pressed="false" aria-label="Favorito V-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="islandwrap"><div class="stripes"></div><div class="island-d"><img src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt"><nav><a href="#">Obra</a><a href="#">Áreas</a><a href="#">Proceso</a></nav><a class="btn sm" href="#">Contacto<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a></div></div></div><p class="note">Barra suspendida con desenfoque; deja ver lo que pasa debajo.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="V-02"><header><span class="code">V-02</span><h3>Menú de pantalla completa</h3><button class="fav" type="button" data-code="V-02" aria-pressed="false" aria-label="Favorito V-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="phone" data-menu><button class="burger-d" type="button" aria-label="Abrir menú" aria-expanded="false"><i></i><i></i></button><div class="ov"><a href="#">Obra</a><a href="#">Áreas</a><a href="#">Proceso</a></div><p>Toca el botón</p></div></div><p class="note">Botón que se vuelve cruz y enlaces que entran escalonados.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="V-03"><header><span class="code">V-03</span><h3>Regla lateral en centímetros</h3><button class="fav" type="button" data-code="V-03" aria-pressed="false" aria-label="Favorito V-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="rulerbox" data-ruler><div class="rl"><output>0.0 cm</output></div><div class="sc"><div class="in"><p>Desplázate</p><p>Más abajo</p><p>Y más</p><p>Todavía más</p><p>Fin</p></div></div></div></div><p class="note">Marcas y lectura que siguen el scroll. Desplázate dentro del cuadro.</p><div class="meta"><span>Origen: impeccable</span><span class="v2">en demo v2</span></div></article><article class="spec" id="V-04"><header><span class="code">V-04</span><h3>Barra de progreso de lectura</h3><button class="fav" type="button" data-code="V-04" aria-pressed="false" aria-label="Favorito V-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="progbox" data-prog><div class="pb"><i></i></div><div class="sc"><div class="in"><p>Desplázate</p><p>Más abajo</p><p>Y más</p><p>Todavía más</p><p>Fin</p></div></div></div></div><p class="note">Línea fina que avanza con el scroll.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="V-05"><header><span class="code">V-05</span><h3>Subrayado deslizante</h3><button class="fav" type="button" data-code="V-05" aria-pressed="false" aria-label="Favorito V-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><nav class="slidenav" data-slide><a href="#">Obra</a><a href="#">Áreas</a><a href="#">Proceso</a><a href="#">Contacto</a><i></i></nav></div><p class="note">Un indicador se desplaza entre los enlaces.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="F" id="cat-F"><h2>Formularios<small>F-01 a F-04</small></h2><div class="grid"><article class="spec" id="F-01"><header><span class="code">F-01</span><h3>Campo con etiqueta flotante</h3><button class="fav" type="button" data-code="F-01" aria-pressed="false" aria-label="Favorito F-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><label class="fl"><input type="text" placeholder=" "><span>Tu nombre</span></label></div><p class="note">La etiqueta sube al escribir.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="F-02"><header><span class="code">F-02</span><h3>Campo por definir</h3><button class="fav" type="button" data-code="F-02" aria-pressed="false" aria-label="Favorito F-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="todo"><small>Correo</small><span>por definir</span></div></div><p class="note">Caja discontinua para datos pendientes.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="F-03"><header><span class="code">F-03</span><h3>Interruptor</h3><button class="fav" type="button" data-code="F-03" aria-pressed="false" aria-label="Favorito F-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><label class="sw"><input type="checkbox" checked><i></i><span>Modo oscuro</span></label></div><p class="note">Deslizador con resorte suave.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="F-04"><header><span class="code">F-04</span><h3>Selector de opciones</h3><button class="fav" type="button" data-code="F-04" aria-pressed="false" aria-label="Favorito F-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="chips" data-chips><button type="button" class="on">Casa</button><button type="button">Local</button><button type="button">Mueble</button></div></div><p class="note">Píldoras seleccionables.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="M" id="cat-M"><h2>Ambiente y fondos<small>M-01 a M-05</small></h2><div class="grid"><article class="spec" id="M-01"><header><span class="code">M-01</span><h3>Grano</h3><button class="fav" type="button" data-code="M-01" aria-pressed="false" aria-label="Favorito M-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="grain"><p>Superficie con grano</p></div></div><p class="note">Textura fina sobre la superficie. Hace menos digital el fondo.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="M-02"><header><span class="code">M-02</span><h3>Tapete de cuadrícula</h3><button class="fav" type="button" data-code="M-02" aria-pressed="false" aria-label="Favorito M-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="mat"><p>Cuadrícula</p></div></div><p class="note">Cuadrícula fina con líneas marcadas cada 5 celdas.</p><div class="meta"><span>Origen: impeccable</span></div></article><article class="spec" id="M-03"><header><span class="code">M-03</span><h3>Manchas flotantes</h3><button class="fav" type="button" data-code="M-03" aria-pressed="false" aria-label="Favorito M-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="blobs"><i></i><i></i><p>Fondo vivo</p></div></div><p class="note">Colores suaves que se mueven lento detrás del contenido.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="M-04"><header><span class="code">M-04</span><h3>Cursor personalizado</h3><button class="fav" type="button" data-code="M-04" aria-pressed="false" aria-label="Favorito M-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="curbox" data-cursor><p>Mueve el cursor aquí</p><i class="ring"></i></div></div><p class="note">Anillo que persigue al cursor con inercia.</p><div class="meta"><span>Origen: nuevo</span></div></article><article class="spec" id="M-05"><header><span class="code">M-05</span><h3>Fondo de puntos que se desvanece</h3><button class="fav" type="button" data-code="M-05" aria-pressed="false" aria-label="Favorito M-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="dotfade"><p>Puntos</p></div></div><p class="note">Puntos que se apagan hacia abajo.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+<section class="cat" data-cat="D" id="cat-D"><h2>Decoración<small>D-01 a D-06</small></h2><div class="grid"><article class="spec" id="D-01"><header><span class="code">D-01</span><h3>Franja de advertencia</h3><button class="fav" type="button" data-code="D-01" aria-pressed="false" aria-label="Favorito D-01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="warn"></div></div><p class="note">Rayas diagonales para separar secciones con carácter de obra.</p><div class="meta"><span>Origen: brutalist</span></div></article><article class="spec" id="D-02"><header><span class="code">D-02</span><h3>Código de barras</h3><button class="fav" type="button" data-code="D-02" aria-pressed="false" aria-label="Favorito D-02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="barcode"></div></div><p class="note">Barras decorativas para fichas y tarjetas.</p><div class="meta"><span>Origen: brutalist</span></div></article><article class="spec" id="D-03"><header><span class="code">D-03</span><h3>Cruces de registro</h3><button class="fav" type="button" data-code="D-03" aria-pressed="false" aria-label="Favorito D-03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="reg"><i></i><i></i><i></i><i></i><p>Registro</p></div></div><p class="note">Marcas de corte en las esquinas, como en una prueba de impresión.</p><div class="meta"><span>Origen: brutalist</span></div></article><article class="spec" id="D-04"><header><span class="code">D-04</span><h3>Etiqueta entre corchetes</h3><button class="fav" type="button" data-code="D-04" aria-pressed="false" aria-label="Favorito D-04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="brk">[ Obra ]</span></div><p class="note">Rótulo técnico en mayúsculas pequeñas.</p><div class="meta"><span>Origen: brutalist</span></div></article><article class="spec" id="D-05"><header><span class="code">D-05</span><h3>Etiqueta en píldora</h3><button class="fav" type="button" data-code="D-05" aria-pressed="false" aria-label="Favorito D-05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><span class="tag">Taller · arquitectura, muebles y obra</span></div><p class="note">Microetiqueta con borde suave.</p><div class="meta"><span>Origen: high-end</span><span class="v2">en demo v2</span></div></article><article class="spec" id="D-06"><header><span class="code">D-06</span><h3>Hueco de foto pendiente</h3><button class="fav" type="button" data-code="D-06" aria-pressed="false" aria-label="Favorito D-06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.8l6.1-.7z"/></svg></button></header><div class="stage"><div class="ph">Foto pendiente</div></div><p class="note">Placeholder con rayado fino, mejor que un cuadro gris.</p><div class="meta"><span>Origen: nuevo</span></div></article></div></section>
+</main>
+<footer><div class="wrap"><p>Catálogo de práctica. Todo el contenido es ficticio. Tipografías propias (Cormorant, Inter, Nothing You Could Do) más Archivo Black, todas con licencia SIL OFL. Los efectos se escribieron desde cero tomando ideas de las pruebas de Taste (MIT) e Impeccable (Apache-2.0), sin copiar su texto ni su código. Sin fotografías de terceros.</p></div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var ease=function(t){return t>=1?1:1-Math.pow(2,-10*t)};
+
+  // Favoritos y filtro
+  var KEY='werkstatt-catalogo-favs',favs=[];
+  try{favs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+  var out=document.getElementById('mylist'),copy=document.getElementById('copy');
+  function renderFavs(){
+    $('.fav').forEach(function(b){b.setAttribute('aria-pressed',favs.indexOf(b.dataset.code)>-1)});
+    out.textContent=favs.length?favs.join(', '):'Sin favoritos';
+    copy.disabled=!favs.length;
+    try{localStorage.setItem(KEY,JSON.stringify(favs))}catch(e){}
+  }
+  $('.fav').forEach(function(b){b.addEventListener('click',function(){
+    var i=favs.indexOf(b.dataset.code);i>-1?favs.splice(i,1):favs.push(b.dataset.code);favs.sort();renderFavs();
+  })});
+  copy.addEventListener('click',function(){
+    var t=favs.join(', ');
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){copy.textContent='Copiada'},function(){window.prompt('Copia tu lista:',t)});
+    setTimeout(function(){copy.textContent='Copiar lista'},1600);
+  });
+  $('#filters button').forEach(function(b){b.addEventListener('click',function(){
+    $('#filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    var c=b.dataset.cat;
+    $('.cat').forEach(function(s){s.hidden=!(c==='*'||s.dataset.cat===c)});
+  })});
+  renderFavs();
+
+  // Preparación de componentes
+  $('[data-split]').forEach(function(el){var t=el.textContent;el.textContent='';el.setAttribute('aria-label',t);
+    t.split('').forEach(function(ch,i){var s=document.createElement('span');s.setAttribute('aria-hidden','true');s.style.setProperty('--i',i);s.textContent=ch;el.appendChild(s)})});
+  $('.blurrise p,.stag li').forEach(function(el,i){el.style.setProperty('--i',i%4)});
+  $('.drawplan svg .w,.drawplan svg .t,.hoverplan svg .live .w,.hoverplan svg .live .t').forEach(function(p){p.setAttribute('pathLength','1')});
+  $('.btn-draw rect').forEach(function(r){r.setAttribute('pathLength','1')});
+  // Odómetro
+  $('[data-odo]').forEach(function(el){
+    el.dataset.odo.split('').forEach(function(ch){
+      var d=document.createElement('span');d.className='d';var i=document.createElement('i');
+      for(var n=0;n<10;n++){var b=document.createElement('b');b.textContent=n;i.appendChild(b)}
+      d.appendChild(i);d.dataset.v=ch;el.appendChild(d);
+    });
+    el.setAttribute('role','img');el.setAttribute('aria-label',el.dataset.odo);
+  });
+  function runOdo(st){$('.odo .d',st).forEach(function(d,k){
+    var i=d.firstChild;i.style.transitionDelay=(k*120)+'ms';i.style.transform='translateY(-'+(+d.dataset.v)+'em)';
+  })}
+  function resetOdo(st){$('.odo .d i',st).forEach(function(i){i.style.transition='none';i.style.transform='none';void i.offsetWidth;i.style.transition=''})}
+  // Contadores
+  function runCount(st){$('[data-count]',st).forEach(function(el){
+    var to=parseFloat(el.dataset.count),dec=+el.dataset.dec,t0=null;
+    if(rm){el.textContent=to.toFixed(dec);return}
+    function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/1600,1);el.textContent=(to*ease(p)).toFixed(dec);if(p<1)requestAnimationFrame(f)}
+    el.textContent=(0).toFixed(dec);requestAnimationFrame(f);
+  })}
+  // Entrada y repetición
+  function go(st){
+    if(!root.classList.contains('js')||rm){st.classList.add('go');return}
+    st.classList.remove('go');resetOdo(st);void st.offsetWidth;
+    requestAnimationFrame(function(){requestAnimationFrame(function(){st.classList.add('go');runCount(st);runOdo(st)})});
+  }
+  root.classList.add('js');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(e.target);io.unobserve(e.target)}})},{threshold:.3});
+  $('.stage[data-rep]').forEach(function(s){io.observe(s)});
+  $('.rep').forEach(function(b){b.addEventListener('click',function(){go(b.closest('.spec').querySelector('.stage'))})});
+
+  // Medios de puntos (canvas)
+  function sizeCanvas(c){var r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=Math.max(1,r.width*d);c.height=Math.max(1,r.height*d);return d}
+  $('canvas.halftone').forEach(function(c){
+    var d=sizeCanvas(c),w=c.width,h=c.height,off=document.createElement('canvas');off.width=w;off.height=h;
+    var o=off.getContext('2d');o.fillStyle='#000';o.textAlign='center';o.textBaseline='middle';
+    var fs=Math.min(h*1.05,w/2.75);o.font=fs+'px "Archivo Black",Arial Black,sans-serif';
+    function draw(){
+      o.clearRect(0,0,w,h);o.fillText(c.dataset.text,w/2,h/2+fs*.03);
+      var img=o.getImageData(0,0,w,h).data,g=c.getContext('2d'),step=7*d;g.clearRect(0,0,w,h);g.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--sage-deep');
+      for(var y=step/2;y<h;y+=step)for(var x=step/2;x<w;x+=step){
+        var a=img[((y|0)*w+(x|0))*4+3]/255;if(a<.5)continue;
+        var r=step*.5*(.15+.85*(x/w));g.beginPath();g.arc(x,y,r,0,6.283);g.fill();
+      }
+    }
+    if(document.fonts&&document.fonts.load)document.fonts.load('40px "Archivo Black"').then(draw);else draw();
+  });
+  $('canvas.dotgrid').forEach(function(c){
+    var d,w,h,mx=-999,my=-999,step=18,run=false,g=c.getContext('2d');
+    function size(){d=sizeCanvas(c);w=c.width;h=c.height}
+    size();
+    function frame(){
+      g.clearRect(0,0,w,h);g.fillStyle='#566451';g.globalAlpha=1;var S=step*d,R=110*d;
+      for(var y=S/2;y<h;y+=S)for(var x=S/2;x<w;x+=S){
+        var dist=Math.hypot(x-mx,y-my),k=Math.max(0,1-dist/R),r=S*(.11+.33*k*k);
+        g.beginPath();g.arc(x,y,r,0,6.283);g.fill();
+      }
+      if(run)requestAnimationFrame(frame);
+    }
+    frame();addEventListener('resize',function(){size();frame()});
+    var st=c.parentNode;
+    st.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();mx=(e.clientX-r.left)*d;my=(e.clientY-r.top)*d;if(!run&&!rm){run=true;requestAnimationFrame(frame)}else if(rm)frame()});
+    st.addEventListener('pointerleave',function(){mx=my=-999;frame();run=false});
+  });
+
+  // Magnético, inclinación, luz, profundidad, cursor
+  $('[data-mag]').forEach(function(b){
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'});
+    b.addEventListener('pointerleave',function(){b.style.transform=''});
+  });
+  $('[data-tilt]').forEach(function(t){var c=t.firstElementChild;
+    t.addEventListener('pointermove',function(e){var r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*14)+'deg)'});
+    t.addEventListener('pointerleave',function(){c.style.transform=''});
+  });
+  $('[data-spot]').forEach(function(s){s.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+  $('[data-depth]').forEach(function(s){
+    s.parentNode.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect();s.style.setProperty('--dx',((e.clientX-r.left)/r.width-.5)*2);s.style.setProperty('--dy',((e.clientY-r.top)/r.height-.5)*2)});
+    s.parentNode.addEventListener('pointerleave',function(){s.style.setProperty('--dx',0);s.style.setProperty('--dy',0)});
+  });
+  $('[data-cursor]').forEach(function(b){var ring=b.querySelector('.ring'),tx=0,ty=0,x=0,y=0,on=false;
+    function f(){x+=(tx-x)*.16;y+=(ty-y)*.16;ring.style.transform='translate('+x+'px,'+y+'px)';if(on)requestAnimationFrame(f)}
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;if(!on){on=true;x=tx;y=ty;requestAnimationFrame(f)}});
+    b.addEventListener('pointerleave',function(){on=false});
+  });
+  // Botón con estados
+  $('[data-state]').forEach(function(b){b.setAttribute('data-state','idle');
+    b.addEventListener('click',function(){if(b.dataset.state!=='idle')return;b.dataset.state='load';
+      setTimeout(function(){b.dataset.state='done'},1400);setTimeout(function(){b.dataset.state='idle'},3000)})});
+  // Menú móvil
+  $('[data-menu]').forEach(function(p){var bt=p.querySelector('.burger-d');bt.addEventListener('click',function(){
+    var o=p.classList.toggle('open');bt.setAttribute('aria-expanded',o);bt.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')})});
+  // Regla y progreso
+  $('[data-ruler]').forEach(function(b){var sc=b.querySelector('.sc'),rl=b.querySelector('.rl'),o=b.querySelector('output');
+    function u(){rl.style.setProperty('--y',sc.scrollTop+'px');o.textContent=(sc.scrollTop/37.795).toFixed(1)+' cm'}sc.addEventListener('scroll',u,{passive:true});u()});
+  $('[data-prog]').forEach(function(b){var sc=b.querySelector('.sc');
+    function u(){var m=sc.scrollHeight-sc.clientHeight;b.style.setProperty('--p',m?sc.scrollTop/m:0)}sc.addEventListener('scroll',u,{passive:true});u()});
+  // Subrayado deslizante
+  $('[data-slide]').forEach(function(n){var bar=n.querySelector('i'),links=$('a',n);
+    function to(a){bar.style.setProperty('--x',a.offsetLeft+'px');bar.style.setProperty('--w',a.offsetWidth+'px')}
+    links.forEach(function(a){a.addEventListener('pointerenter',function(){to(a)});a.addEventListener('focus',function(){to(a)})});
+    n.addEventListener('pointerleave',function(){to(links[0])});to(links[0]);
+    addEventListener('load',function(){to(links[0])});
+  });
+  // Selector de opciones
+  $('[data-chips]').forEach(function(c){c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;$('button',c).forEach(function(x){x.classList.toggle('on',x===b)})})});
+  // Texto que se llena al bajar
+  var fills=$('[data-fill]');
+  function fill(){var vh=innerHeight;fills.forEach(function(el){var r=el.getBoundingClientRect(),p=(vh*.9-r.top)/(vh*.5);el.style.setProperty('--p',Math.max(0,Math.min(1,p))*100+'%')})}
+  if(fills.length){addEventListener('scroll',fill,{passive:true});fill()}
+})();
+</script>
+</body>
+</html>
