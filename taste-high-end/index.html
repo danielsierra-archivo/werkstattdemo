@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Werkstatt | Demo Taste: high-end visual design</title>
+<meta name="description" content="Demo de práctica. Página hecha siguiendo el método de la skill high-end-visual-design (Taste Skill, licencia MIT). Contenido de ejemplo.">
+<meta name="theme-color" content="#FDFBF7">
+<link rel="icon" href="../assets/logo/marca-positivo.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Geist";src:url("../fonts/geist-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url("../fonts/instrument-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url("../fonts/instrument-serif-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+
+/* Arquetipos elegidos: Editorial Luxury (vibe) + Asymmetrical Bento (layout). */
+:root{
+  --cream:#FDFBF7;
+  --linen:#F5EFE4;
+  --core:#FFFEFB;
+  --espresso:#2A211B;
+  --soft:#6B5E52;
+  --sage:#8E9C86;
+  --sage-deep:#566451;
+  --ring:rgba(42,33,27,.08);
+  --shell:rgba(42,33,27,.04);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --serif:"Instrument Serif","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Geist",ui-sans-serif,system-ui,sans-serif;
+  --r-out:2rem;
+  --pad-shell:.5rem;
+  --r-in:calc(2rem - .5rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--espresso);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--sage);color:var(--espresso)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sage-deep);outline-offset:4px;border-radius:6px}
+
+/* Grano fijo, sin eventos, nunca sobre contenedores con scroll. */
+body::after{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+.wrap{width:min(1280px,100% - 3rem);margin-inline:auto}
+.sec{padding-block:clamp(6rem,12vw,10rem)}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:60;background:var(--espresso);color:var(--cream);padding:.6rem 1rem;border-radius:999px;transition:top .4s var(--ease)}
+.skip:focus{top:1rem}
+
+/* Etiqueta microscópica en píldora */
+.tag{display:inline-flex;align-items:center;font:500 .625rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:.45rem .8rem;border-radius:999px;background:var(--shell);box-shadow:0 0 0 1px var(--ring) inset;color:var(--soft)}
+
+/* Isla de navegación flotante */
+.island{position:fixed;top:1.25rem;left:50%;translate:-50% 0;z-index:50;display:flex;align-items:center;gap:1.75rem;padding:.5rem .5rem .5rem 1.4rem;border-radius:999px;
+  background:rgba(253,251,247,.72);-webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
+  box-shadow:0 0 0 1px var(--ring),0 24px 48px -24px rgba(42,33,27,.28)}
+.island .logo{display:block;height:1.1rem;width:auto}
+.island nav{display:flex;gap:1.5rem;font-size:.875rem}
+.island nav a{text-decoration:none;color:var(--soft);padding:.25rem 0;transition:color .6s var(--ease)}
+.island nav a:hover{color:var(--espresso)}
+.burger{display:none}
+
+/* Botón con ícono anidado */
+.btn{display:inline-flex;align-items:center;gap:1rem;padding:.5rem .5rem .5rem 1.5rem;border-radius:999px;border:0;background:var(--espresso);color:var(--cream);font:500 .9rem/1 var(--sans);text-decoration:none;cursor:pointer;
+  transition:transform .7s var(--ease),background-color .7s var(--ease),box-shadow .7s var(--ease);box-shadow:0 14px 28px -16px rgba(42,33,27,.5)}
+.btn .ico{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:rgba(253,251,247,.14);transition:transform .7s var(--ease),background-color .7s var(--ease)}
+.btn svg{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{background:#3a2e26}
+.btn:hover .ico{transform:translate(2px,-1px) scale(1.06);background:rgba(253,251,247,.22)}
+.btn:active{transform:scale(.98)}
+.btn.off{background:rgba(42,33,27,.08);color:var(--soft);box-shadow:none;cursor:not-allowed}
+.btn.off .ico{background:rgba(42,33,27,.06)}
+.btn.off:active{transform:none}
+
+/* Doble bisel: carcasa exterior + núcleo interior */
+.bezel{padding:var(--pad-shell);border-radius:var(--r-out);background:var(--shell);box-shadow:0 0 0 1px var(--ring)}
+.core{height:100%;border-radius:var(--r-in);background:var(--core);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 30px 60px -40px rgba(42,33,27,.35);padding:clamp(1.5rem,2.6vw,2.25rem);display:flex;flex-direction:column;gap:1.25rem}
+.bezel.sage .core{background:#EEF0E8}
+.bezel.dark{background:rgba(42,33,27,.12)}
+.bezel.dark .core{background:var(--espresso);color:var(--cream);box-shadow:inset 0 1px 1px rgba(255,255,255,.12)}
+
+/* Portada */
+.hero{min-height:100dvh;display:flex;align-items:flex-end;padding-block:9rem 5rem}
+.hero .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;align-items:end;width:100%}
+.hero h1{grid-column:1/-1;margin:1.5rem 0 0;font:400 clamp(3.1rem,9.4vw,9.4rem)/.92 var(--serif);letter-spacing:-.035em;text-wrap:balance;max-width:14ch}
+.hero h1 em{font-style:italic;color:var(--sage-deep)}
+.hero .lead{grid-column:1/8;margin:2.5rem 0 0;font-size:1.0625rem;line-height:1.7;color:var(--soft);max-width:52ch}
+.hero .side{grid-column:9/-1;display:flex;flex-direction:column;gap:1.75rem;align-items:flex-start;justify-self:end}
+.sign{font:italic 400 2.4rem/1 var(--serif);margin:0;letter-spacing:-.01em}
+
+/* Encabezados de sección */
+.head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-bottom:clamp(3rem,6vw,5rem)}
+.head .tag{grid-column:1/-1;justify-self:start}
+.head h2{grid-column:1/9;margin:1.25rem 0 0;font:400 clamp(2.3rem,5.4vw,4.8rem)/1 var(--serif);letter-spacing:-.03em;text-wrap:balance}
+.head p{grid-column:1/7;margin:0;color:var(--soft);max-width:48ch}
+
+/* Bento asimétrico de proyectos */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1.5rem}
+.p1{grid-column:span 8;grid-row:span 2}
+.p2,.p3{grid-column:span 4}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem}
+.core h3{margin:0;font:400 clamp(1.8rem,3vw,2.7rem)/1.05 var(--serif);letter-spacing:-.02em}
+.core p{margin:0;color:var(--soft);max-width:54ch}
+.dark .core p,.bezel.dark .core p{color:rgba(253,251,247,.72)}
+.sheet{margin-top:auto;border-radius:1.25rem;background:var(--linen);box-shadow:0 0 0 1px var(--ring) inset;padding:1rem;aspect-ratio:4/3}
+.p1 .sheet{aspect-ratio:auto;flex:1;min-height:20rem}
+svg.plan{display:block;width:100%;height:100%}
+.plan .w{stroke:var(--espresso);stroke-width:2;fill:none;stroke-linejoin:round}
+.plan .t{stroke:var(--sage-deep);stroke-width:1;fill:none}
+.plan .d{stroke-dasharray:3 3}
+.plan .c{stroke:var(--soft);stroke-width:1;fill:none}
+.plan .tx{font:400 11px var(--sans);fill:var(--soft)}
+.plan .tl{font:500 11px var(--sans);fill:var(--espresso)}
+.cap{font-size:.8125rem;color:var(--soft);margin:0}
+
+/* Áreas */
+.areas{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1.5rem}
+.a1{grid-column:span 5}.a2{grid-column:span 3}.a3{grid-column:span 4}
+.a4{grid-column:span 4}.a5{grid-column:span 8}
+.areas h3{margin:0;font:400 clamp(1.7rem,2.6vw,2.4rem)/1.05 var(--serif);letter-spacing:-.02em}
+.areas .core{min-height:14rem;justify-content:space-between}
+
+/* Proceso en cascada */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;align-items:start}
+.steps li{list-style:none}
+.steps li:nth-child(2){margin-top:3rem}
+.steps li:nth-child(3){margin-top:6rem}
+.steps li:nth-child(4){margin-top:9rem}
+.steps{padding:0;margin:0}
+.num{font:italic 400 3.4rem/1 var(--serif);color:var(--sage-deep);letter-spacing:-.03em}
+.steps h3{margin:0;font:500 1.0625rem/1.3 var(--sans)}
+.steps p{margin:0;color:var(--soft);font-size:.9375rem}
+
+/* Preguntas */
+.faq{display:grid;gap:.75rem;max-width:56rem}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.25rem 1.5rem;font:400 clamp(1.25rem,2vw,1.6rem)/1.2 var(--serif);background:var(--core);border-radius:var(--r-in);box-shadow:inset 0 1px 1px rgba(255,255,255,.9)}
+.faq details[open] summary{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.faq summary::-webkit-details-marker{display:none}
+.faq .plus{flex:none;width:2.25rem;height:2.25rem;border-radius:50%;background:var(--shell);display:grid;place-items:center;transition:transform .7s var(--ease),background-color .7s var(--ease)}
+.faq .plus svg{width:1rem;height:1rem;stroke:var(--espresso);stroke-width:1.1;fill:none;stroke-linecap:round}
+.faq details[open] .plus{transform:rotate(45deg);background:var(--sage)}
+.faq summary:hover .plus{background:rgba(142,156,134,.35)}
+.faq .ans{background:var(--core);border-radius:0 0 var(--r-in) var(--r-in);padding:0 1.5rem 1.5rem;color:var(--soft)}
+.faq .ans p{max-width:58ch}
+.faq .ans p{margin:0}
+:root{interpolate-size:allow-keywords}
+details::details-content{block-size:0;overflow:hidden;transition:block-size .7s var(--ease),content-visibility .7s allow-discrete}
+details[open]::details-content{block-size:auto}
+
+/* Contacto */
+.contact .core{padding:clamp(2rem,5vw,4.5rem);gap:2rem}
+.contact h2{margin:0;font:400 clamp(2.4rem,6vw,5.6rem)/.96 var(--serif);letter-spacing:-.035em;text-wrap:balance;max-width:14ch}
+.cf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;margin:0}
+.cf dt{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(253,251,247,.55)}
+.cf dd{margin:.35rem 0 0;font-style:italic;font-family:var(--serif);font-size:1.3rem;color:rgba(253,251,247,.85)}
+
+footer{padding-block:3rem 4rem}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem}
+footer img{height:1.2rem;width:auto}
+footer p{margin:0;font-size:.8125rem;color:var(--soft);max-width:60ch}
+
+/* Menú móvil */
+.sheetnav{position:fixed;inset:0;z-index:45;display:grid;place-content:center;gap:1.25rem;padding:2rem;background:rgba(253,251,247,.86);-webkit-backdrop-filter:blur(40px);backdrop-filter:blur(40px);opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s}
+.sheetnav a{font:400 clamp(2.4rem,11vw,3.6rem)/1.1 var(--serif);text-decoration:none;letter-spacing:-.02em;transform:translateY(3rem);opacity:0;transition:transform .8s var(--ease),opacity .8s var(--ease)}
+body.open .sheetnav{opacity:1;visibility:visible}
+body.open .sheetnav a{transform:none;opacity:1}
+body.open .sheetnav a:nth-child(1){transition-delay:.1s}
+body.open .sheetnav a:nth-child(2){transition-delay:.15s}
+body.open .sheetnav a:nth-child(3){transition-delay:.2s}
+body.open .sheetnav a:nth-child(4){transition-delay:.25s}
+body.open .sheetnav a:nth-child(5){transition-delay:.3s}
+.burger{position:relative;width:2.5rem;height:2.5rem;border:0;border-radius:50%;background:var(--shell);cursor:pointer}
+.burger i{position:absolute;left:50%;top:50%;width:1rem;height:1px;background:var(--espresso);translate:-50% 0;transition:transform .7s var(--ease)}
+.burger i:nth-child(1){transform:translateY(-3px)}
+.burger i:nth-child(2){transform:translateY(3px)}
+body.open .burger i:nth-child(1){transform:rotate(45deg)}
+body.open .burger i:nth-child(2){transform:rotate(-45deg)}
+
+@media (max-width:900px){
+  .island{gap:1rem;padding-left:1.1rem}
+  .island nav,.island .btn{display:none}
+  .burger{display:block}
+  .hero .lead{grid-column:1/-1}
+  .hero .side{grid-column:1/-1;justify-self:start}
+  .head h2,.head p{grid-column:1/-1}
+  .bento,.areas{grid-template-columns:minmax(0,1fr);gap:1rem}
+  .p1,.p2,.p3,.a1,.a2,.a3,.a4,.a5{grid-column:auto;grid-row:auto}
+  .steps{grid-template-columns:minmax(0,1fr);gap:2.5rem}
+  .steps li:nth-child(n){margin-top:0}
+  .cf{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .core{padding:1.25rem}
+}
+
+/* Entradas por scroll: visibles por defecto; solo se ocultan si hay JS y movimiento permitido. */
+@media (prefers-reduced-motion:no-preference){
+  .js .reveal{opacity:0;transform:translateY(4rem);filter:blur(10px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+  .js .reveal.in{opacity:1;transform:none;filter:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#obra">Saltar al contenido</a>
+
+<header class="island" role="banner">
+  <a href="#inicio" aria-label="Werkstatt, inicio"><img class="logo" src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt"></a>
+  <nav aria-label="Secciones">
+    <a href="#obra">Obra</a><a href="#areas">Áreas</a><a href="#proceso">Proceso</a><a href="#preguntas">Preguntas</a>
+  </nav>
+  <a class="btn" href="#contacto">Contacto<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
+  <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+</header>
+<nav class="sheetnav" id="menu" aria-label="Menú">
+  <a href="#obra">Obra</a><a href="#areas">Áreas</a><a href="#proceso">Proceso</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
+</nav>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <span class="tag" style="grid-column:1/-1;justify-self:start">Taller · arquitectura, muebles y obra</span>
+        <h1 id="titulo">La obra se piensa en el plano y <em>se entiende en la mano.</em></h1>
+        <p class="lead">Le llamo Werkstatt, que en alemán es “taller”, a este lugar donde se dibuja, se construye y se prueba. Lo que funciona y lo que se ve bien casi nunca son cosas distintas, pero hay que sentarse a verlo. En mi caso empiezo por escuchar cómo se va a usar un espacio y solo después decido cómo se ve. Casi siempre termino igual, con un café enfriándose junto a un plano que todavía puede cambiar.</p>
+        <div class="side">
+          <a class="btn" href="#obra">Ver obra<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
+          <p class="sign">Daniel Sierra</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="obra" aria-labelledby="obra-t">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Obra</span>
+        <h2 id="obra-t">Tres proyectos de ejemplo para ver cómo se mostraría el trabajo.</h2>
+        <p>Cada proyecto lleva sus datos, un plano con cotas y fotografía propia. Las fotos entran cuando existan y con permiso de quien habita la obra.</p>
+      </div>
+      <div class="bento">
+        <article class="bezel p1 reveal"><div class="core">
+          <div class="meta"><span class="tag">Vivienda</span><span class="tag">51 m²</span><span class="tag">2026</span><span class="tag">Proyecto de ejemplo</span></div>
+          <h3>Casa en barranca</h3>
+          <p>Una casa pequeña que se acomoda al terreno en lugar de corregirlo. Las habitaciones se abren hacia donde baja el paisaje y la cocina queda donde se junta todo el mundo al final del día.</p>
+          <div class="sheet draw"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Planta de la casa en barranca, 9.60 por 6.30 metros, con sala, cocina, recámara y estudio">
+                  <g class="c">
+                    <line x1="40" y1="28" x2="360" y2="28"/><line x1="36" y1="32" x2="44" y2="24"/><line x1="356" y1="32" x2="364" y2="24"/>
+                    <line x1="40" y1="24" x2="40" y2="46"/><line x1="360" y1="24" x2="360" y2="46"/>
+                    <line x1="18" y1="50" x2="18" y2="260"/><line x1="14" y1="54" x2="22" y2="46"/><line x1="14" y1="264" x2="22" y2="256"/>
+                    <line x1="14" y1="50" x2="36" y2="50"/><line x1="14" y1="260" x2="36" y2="260"/>
+                  </g>
+                  <text class="tx" x="200" y="21" text-anchor="middle">9.60 m</text>
+                  <text class="tx" x="10" y="155" text-anchor="middle" transform="rotate(-90 10 155)">6.30 m</text>
+                  <path class="w" d="M40 50 H360 V160 H250 V260 H40 Z"/>
+                  <path class="t" d="M200 50 V105 M200 135 V160 M40 160 H90 M120 160 H170 M195 160 H250 M145 160 V260"/>
+                  <text class="tl" x="120" y="108" text-anchor="middle">Sala</text>
+                  <text class="tl" x="280" y="108" text-anchor="middle">Cocina</text>
+                  <text class="tl" x="92" y="214" text-anchor="middle">Recámara</text>
+                  <text class="tl" x="197" y="214" text-anchor="middle">Estudio</text>
+                </svg></div>
+          <p class="cap">Planta. Cotas generales. Fotografía propia, pendiente.</p>
+        </div></article>
+        <article class="bezel sage p2 reveal"><div class="core">
+          <div class="meta"><span class="tag">Mueble</span><span class="tag">240 × 90 × 76 cm</span><span class="tag">2026</span></div>
+          <h3>Mesa de taller 240</h3>
+          <p>Una mesa larga para trabajar de pie o sentado. Estructura de perfil de acero y tablón de madera, con una sola unión visible y las medidas pensadas para dos personas a la vez.</p>
+          <div class="sheet draw"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Planta y alzado frontal de la mesa de taller, 240 por 90 centímetros y 76 de alto">
+                  <g class="c">
+                    <line x1="70" y1="26" x2="330" y2="26"/><line x1="66" y1="30" x2="74" y2="22"/><line x1="326" y1="30" x2="334" y2="22"/>
+                    <line x1="70" y1="22" x2="70" y2="42"/><line x1="330" y1="22" x2="330" y2="42"/>
+                    <line x1="352" y1="44" x2="352" y2="142"/><line x1="348" y1="48" x2="356" y2="40"/><line x1="348" y1="146" x2="356" y2="138"/>
+                    <line x1="332" y1="44" x2="360" y2="44"/><line x1="332" y1="142" x2="360" y2="142"/>
+                    <line x1="352" y1="196" x2="352" y2="278"/><line x1="348" y1="200" x2="356" y2="192"/><line x1="348" y1="282" x2="356" y2="274"/>
+                    <line x1="332" y1="196" x2="360" y2="196"/>
+                    <line x1="56" y1="278" x2="360" y2="278"/>
+                  </g>
+                  <text class="tx" x="200" y="19" text-anchor="middle">240 cm</text>
+                  <text class="tx" x="368" y="93" text-anchor="middle" transform="rotate(-90 368 93)">90 cm</text>
+                  <text class="tx" x="368" y="237" text-anchor="middle" transform="rotate(-90 368 237)">76 cm</text>
+                  <rect class="w" x="70" y="44" width="260" height="98"/>
+                  <rect class="t d" x="78" y="52" width="8" height="8"/><rect class="t d" x="314" y="52" width="8" height="8"/>
+                  <rect class="t d" x="78" y="126" width="8" height="8"/><rect class="t d" x="314" y="126" width="8" height="8"/>
+                  <text class="tl" x="70" y="162">Planta</text>
+                  <text class="tl" x="70" y="186">Alzado</text>
+                  <rect class="w" x="70" y="196" width="260" height="7"/>
+                  <rect class="w" x="82" y="203" width="8" height="75"/><rect class="w" x="310" y="203" width="8" height="75"/>
+                  <line class="t" x1="90" y1="248" x2="310" y2="248"/>
+                </svg></div>
+        </div></article>
+        <article class="bezel p3 reveal"><div class="core">
+          <div class="meta"><span class="tag">Interiorismo</span><span class="tag">36 m²</span><span class="tag">2026</span></div>
+          <h3>Local de refacciones</h3>
+          <p>Un local de barrio rehecho para que se entienda de un vistazo. El mostrador manda y los estantes siguen el muro hasta el fondo.</p>
+          <div class="sheet draw"><svg class="plan" viewBox="0 0 400 300" role="img" aria-label="Planta del local de refacciones, 8.00 por 4.50 metros, con mostrador y estantes">
+                  <g class="c">
+                    <line x1="30" y1="36" x2="350" y2="36"/><line x1="26" y1="40" x2="34" y2="32"/><line x1="346" y1="40" x2="354" y2="32"/>
+                    <line x1="30" y1="32" x2="30" y2="56"/><line x1="350" y1="32" x2="350" y2="56"/>
+                    <line x1="372" y1="60" x2="372" y2="240"/><line x1="368" y1="64" x2="376" y2="56"/><line x1="368" y1="244" x2="376" y2="236"/>
+                    <line x1="354" y1="60" x2="380" y2="60"/><line x1="354" y1="240" x2="380" y2="240"/>
+                  </g>
+                  <text class="tx" x="190" y="29" text-anchor="middle">8.00 m</text>
+                  <text class="tx" x="386" y="150" text-anchor="middle" transform="rotate(-90 386 150)">4.50 m</text>
+                  <path class="w" d="M140 240 H30 V60 H350 V240 H188"/>
+                  <rect class="t" x="30" y="72" width="16" height="156"/>
+                  <rect class="t" x="160" y="84" width="160" height="24"/>
+                  <text class="tl" x="240" y="128" text-anchor="middle">Mostrador</text>
+                  <text class="tl" x="164" y="260" text-anchor="middle">Entrada</text>
+                </svg></div>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="areas" aria-labelledby="areas-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Áreas</span>
+        <h2 id="areas-t">Un mismo taller para lo que se dibuja y lo que se toca.</h2>
+      </div>
+      <div class="areas">
+        <div class="bezel sage a1 reveal"><div class="core"><h3>Arquitectura</h3><p>Proyecto, planos y seguimiento de obra, desde la primera idea hasta el último detalle.</p></div></div>
+        <div class="bezel a2 reveal"><div class="core"><h3>Construcción</h3><p>Ejecución de obra con dibujo claro y comunicación constante con quien la va a habitar.</p></div></div>
+        <div class="bezel a3 reveal"><div class="core"><h3>Interiorismo</h3><p>Espacios resueltos por dentro: distribución, materiales, luz y mobiliario.</p></div></div>
+        <div class="bezel a4 reveal"><div class="core"><h3>Muebles</h3><p>Diseño y venta de piezas propias, pensadas para el uso diario y hechas con oficio.</p></div></div>
+        <div class="bezel dark a5 reveal"><div class="core"><h3 style="color:var(--cream)">Ropa de obra</h3><p>Prendas para quien trabaja en obra: resistentes, cómodas y bien pensadas.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="proceso" aria-labelledby="proceso-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Proceso</span>
+        <h2 id="proceso-t">Cuatro pasos, siempre con el plano a la vista.</h2>
+      </div>
+      <ol class="steps" style="padding-bottom:9rem">
+        <li class="reveal"><div class="bezel"><div class="core"><span class="num">1</span><h3>Escuchar</h3><p>Una primera conversación para entender cómo se va a usar el espacio, qué presupuesto hay y qué plazos importan.</p></div></div></li>
+        <li class="reveal"><div class="bezel"><div class="core"><span class="num">2</span><h3>Dibujar</h3><p>Planos, cortes y materiales a la vista antes de decidir. Ajustar en papel sale más barato que ajustar en obra.</p></div></div></li>
+        <li class="reveal"><div class="bezel"><div class="core"><span class="num">3</span><h3>Construir</h3><p>Obra con seguimiento. Todo cambio de alcance se acuerda por escrito antes de ejecutarse.</p></div></div></li>
+        <li class="reveal"><div class="bezel"><div class="core"><span class="num">4</span><h3>Entregar</h3><p>Entrega con acta, planos finales y una guía de cuidados del espacio o de la pieza.</p></div></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="preguntas" aria-labelledby="preguntas-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Preguntas</span>
+        <h2 id="preguntas-t">Lo que casi todos preguntan antes de empezar.</h2>
+      </div>
+      <div class="faq">
+        <details class="bezel reveal"><summary><span>¿Cómo empieza un proyecto?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Con una conversación para entender qué necesitas. De ahí sale una propuesta con alcance, plazos y costo.</p></div></details>
+        <details class="bezel reveal"><summary><span>¿Cómo se acuerdan los pagos?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Cada proyecto se cotiza por separado y los pagos se definen en la propuesta. Cada pago recibido lleva su recibo.</p></div></details>
+        <details class="bezel reveal"><summary><span>¿Qué pasa si el alcance cambia durante la obra?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Se documenta en una orden de cambio y se acuerda antes de ejecutarlo, para que nadie se entere del costo al final.</p></div></details>
+        <details class="bezel reveal"><summary><span>¿Puedo pedir un mueble a medida?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Sí. Cada pieza lleva su ficha técnica, una cotización por variante y una guía de cuidados.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contacto" aria-labelledby="contacto-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="bezel dark reveal"><div class="core">
+        <span class="tag" style="background:rgba(253,251,247,.08);color:rgba(253,251,247,.7);box-shadow:0 0 0 1px rgba(253,251,247,.14) inset;align-self:flex-start">Contacto</span>
+        <h2 id="contacto-t">Cuéntame qué quieres resolver.</h2>
+        <p style="max-width:56ch">En el primer mensaje dime qué es (casa, local, mueble), dónde está, para cuándo lo necesitas y qué presupuesto tienes en mente. Con eso ya se puede conversar.</p>
+        <dl class="cf">
+          <div><dt>Correo</dt><dd>por definir</dd></div>
+          <div><dt>Teléfono</dt><dd>por definir</dd></div>
+          <div><dt>Ubicación</dt><dd>por definir</dd></div>
+          <div><dt>Redes</dt><dd>por definir</dd></div>
+        </dl>
+        <span class="btn off" role="link" aria-disabled="true" title="El correo aún no está definido" style="align-self:flex-start">Escribir (correo por definir)<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></span>
+      </div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <img src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt">
+    <p>Demo de práctica. Los proyectos, textos y datos son de ejemplo y provisionales. Página hecha siguiendo el método de la skill high-end-visual-design (Taste Skill, licencia MIT), sin copiar su texto. <a href="../index.html">Volver al índice</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.body;
+  var burger=document.querySelector('.burger'),menu=document.getElementById('menu');
+  function toggle(open){
+    var o=typeof open==='boolean'?open:!b.classList.contains('open');
+    b.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);
+    burger.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú');
+  }
+  burger.addEventListener('click',function(){toggle()});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){toggle(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')toggle(false)});
+  try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+    document.querySelectorAll('.draw svg').forEach(function(svg){
+      var i=0;svg.querySelectorAll('.w,.t:not(.d)').forEach(function(el){
+        el.setAttribute('pathLength','1');el.style.strokeDasharray='1';el.style.strokeDashoffset='1';
+        el.style.transition='stroke-dashoffset 1.6s cubic-bezier(.32,.72,0,1) '+(i*0.08).toFixed(2)+'s';i++;
+      });
+    });
+    document.documentElement.classList.add('js');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.draw svg .w,.draw svg .t').forEach(function(el){el.style.strokeDashoffset='0'});
+      io.unobserve(e.target);
+    })},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  }catch(err){document.documentElement.classList.remove('js')}
+})();
+</script>
+</body>
+</html>
