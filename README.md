@@ -1,6 +1,6 @@
 # Werkstatt demo
 
-Cuatro páginas de práctica con contenido de ejemplo, hechas para comparar enfoques de diseño web antes de definir los parámetros propios de Werkstatt.
+Páginas de práctica con contenido de ejemplo, hechas para comparar enfoques de diseño web antes de definir los parámetros propios de Werkstatt.
 
 | Carpeta | Enfoque |
 |---|---|
@@ -11,6 +11,7 @@ Cuatro páginas de práctica con contenido de ejemplo, hechas para comparar enfo
 | `demo-v2/` y `demo-v2-b/` | Combinación elegida: estructura y movimiento de high-end, 2026 de puntos y títulos grandes de brutalist, regla con centímetros de Impeccable. A: títulos en Cormorant. B: títulos en Archivo Black |
 | `catalogo/` | Catálogo de efectos con código fijo por pieza (N-01, B-03...). Lista de códigos en `catalogo/CODIGOS.md` |
 | `demo-v3/` | Opción B de la v2 más las piezas elegidas del catálogo: A-02, A-03, A-06, A-08, B-03, B-05, C-04, C-05, F-01, M-03, N-01, N-05, N-08, N-09, T-01, T-04, T-08, V-01, V-03 |
+| `portafolio-daniel/` | Portafolio personal de Daniel Sierra sobre la base de la demo v3 (mismas piezas del catálogo). Contenido público y de ejemplo; sin logo de Werkstatt |
 
 ## Créditos y licencias
 
