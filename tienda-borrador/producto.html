@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Werkstatt | Pieza (borrador)</title>
+<meta name="description" content="Ficha de una pieza de la tienda de Werkstatt. Contenido de prueba.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FDFBF7">
+<link rel="icon" href="../assets/logo/marca-positivo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<a class="skip" href="#ficha">Saltar a la pieza</a>
+
+<header class="island" role="banner">
+  <a href="../demo-v3/" aria-label="Werkstatt, volver al sitio"><img class="logo" src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt"></a>
+  <nav aria-label="Secciones">
+    <a href="index.html#catalogo">Piezas</a><a href="index.html#compra">Cómo comprar</a>
+  </nav>
+  <a class="btn" href="../demo-v3/" data-mag>Taller<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
+</header>
+
+<div class="ruler" aria-hidden="true"><output id="cm">0.0 cm</output></div>
+
+<main id="inicio" class="ficha-main">
+  <div class="wrap">
+    <a class="arrow-link back" href="index.html#catalogo">Volver a las piezas<svg viewBox="0 0 36 12" aria-hidden="true"><path d="M0 6h34M29 1l5 5-5 5"/></svg></a>
+    <div id="ficha" class="ficha"></div>
+    <noscript><p class="empty">La tienda necesita JavaScript para mostrar la pieza.</p></noscript>
+    <section class="mas" id="mas" aria-labelledby="mas-t" hidden>
+      <div class="head reveal">
+        <i class="gl" aria-hidden="true"></i>
+        <h2 id="mas-t">También en esta familia.</h2>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="wrap foot">
+  <img src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt">
+  <p>Borrador de prueba. Las piezas, los precios y los enlaces son de ejemplo y no representan la tienda final.</p>
+  <a class="arrow-link back" href="../">Todas las demos<svg viewBox="0 0 36 12" aria-hidden="true"><path d="M0 6h34M29 1l5 5-5 5"/></svg></a>
+</footer>
+
+<script src="productos.js"></script>
+<script src="tienda.js"></script>
+</body>
+</html>

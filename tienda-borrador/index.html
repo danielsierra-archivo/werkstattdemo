@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Werkstatt | Tienda (borrador)</title>
+<meta name="description" content="Borrador de la tienda de Werkstatt. Contenido de prueba.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FDFBF7">
+<link rel="icon" href="../assets/logo/marca-positivo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<a class="skip" href="#catalogo">Saltar a las piezas</a>
+
+<header class="island" role="banner">
+  <a href="../demo-v3/" aria-label="Werkstatt, volver al sitio"><img class="logo" src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt"></a>
+  <nav aria-label="Secciones">
+    <a href="#catalogo">Piezas</a><a href="#compra">Cómo comprar</a>
+  </nav>
+  <a class="btn" href="../demo-v3/" data-mag>Taller<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
+</header>
+
+<div class="ruler" aria-hidden="true"><output id="cm">0.0 cm</output></div>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="blobs" aria-hidden="true"><i></i><i></i></div>
+    <span class="bleed" id="bleed" aria-hidden="true">25</span>
+    <div class="wrap">
+      <div class="grid">
+        <span class="tag" style="grid-column:1/-1;justify-self:start">Tienda · borrador con contenido de prueba</span>
+        <h1 id="titulo">Piezas del taller, <em>para llevar a casa.</em></h1>
+        <p class="lead">Una tienda pequeña dentro del taller. Algunas piezas se compran directo desde aquí; otras, de las que hay pocas, se piden por mensaje.</p>
+        <div class="side">
+          <a class="btn" href="#catalogo" data-mag>Ver las piezas<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="catalogo" aria-labelledby="catalogo-t">
+    <div class="wrap">
+      <div class="head reveal">
+        <i class="gl" aria-hidden="true"></i>
+        <span class="tag">Piezas</span>
+        <h2 id="catalogo-t">Todas las piezas, cada una con su código.</h2>
+        <p>Elige una familia o míralas todas. El código de cada pieza es el que usas al escribir.</p>
+        <div class="stats">
+          <div><b id="s-total" data-count="0">0</b><span>Piezas</span></div>
+          <div><b id="s-directa" data-count="0">0</b><span>Compra directa</span></div>
+          <div><b id="s-mensaje" data-count="0">0</b><span>Por mensaje</span></div>
+        </div>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por familia"></div>
+      <div class="cards" id="cards" aria-live="polite"></div>
+      <noscript><p class="empty">La tienda necesita JavaScript para mostrar las piezas.</p></noscript>
+    </div>
+  </section>
+
+  <section class="sec" id="compra" aria-labelledby="compra-t">
+    <div class="wrap">
+      <div class="head reveal">
+        <i class="gl" aria-hidden="true"></i>
+        <span class="tag">Cómo comprar</span>
+        <h2 id="compra-t">Dos caminos, según la pieza.</h2>
+        <p>El botón de cada pieza te dice cuál toca.</p>
+      </div>
+      <div class="two">
+        <article class="bezel reveal"><div class="core">
+          <b class="pn">01</b>
+          <h3>Compra directa</h3>
+          <ol class="pasos">
+            <li>Elige la pieza y revisa su ficha.</li>
+            <li>Pulsa Comprar: te lleva al enlace de pago.</li>
+            <li>Pagas ahí mismo.</li>
+          </ol>
+        </div></article>
+        <article class="bezel sage reveal"><div class="core">
+          <b class="pn">02</b>
+          <h3>Por mensaje</h3>
+          <ol class="pasos">
+            <li>Pulsa Consultar: se abre un correo con el código de la pieza en el asunto.</li>
+            <li>Cuéntame lo que necesitas.</li>
+            <li>Te respondo con disponibilidad y los siguientes pasos.</li>
+          </ol>
+        </div></article>
+      </div>
+      <p class="pendiente">Envíos, devoluciones, facturación y aviso de privacidad: por definir.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <img src="../assets/logo/werkstatt-positivo.svg" alt="Werkstatt">
+  <p>Borrador de prueba. Las piezas, los precios y los enlaces son de ejemplo y no representan la tienda final.</p>
+  <a class="arrow-link back" href="../">Todas las demos<svg viewBox="0 0 36 12" aria-hidden="true"><path d="M0 6h34M29 1l5 5-5 5"/></svg></a>
+</footer>
+
+<script src="productos.js"></script>
+<script src="tienda.js"></script>
+</body>
+</html>
