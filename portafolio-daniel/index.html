@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Daniel Sierra | Portafolio</title>
 <meta name="description" content="Portafolio de Daniel Sierra, egresado de Arquitectura: edificio departamental, casa de cultura y vivienda unifamiliar, con renders, plantas y cortes.">
+<meta property="og:title" content="Daniel Sierra | Portafolio">
+<meta property="og:description" content="Egresado de Arquitectura. Edificio departamental, casa de cultura y vivienda unifamiliar.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://danielsierra-archivo.github.io/werkstattdemo/portafolio-daniel/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://danielsierra-archivo.github.io/werkstattdemo/portafolio-daniel/img/og.jpg">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#FDFBF7">
 <style>
@@ -162,6 +168,7 @@ body.open .sheetnav a:nth-child(2){transition-delay:.15s}
 body.open .sheetnav a:nth-child(3){transition-delay:.2s}
 body.open .sheetnav a:nth-child(4){transition-delay:.25s}
 body.open .sheetnav a:nth-child(5){transition-delay:.3s}
+body.open .sheetnav a:nth-child(6){transition-delay:.35s}
 .burger{position:relative;width:2.5rem;height:2.5rem;border:0;border-radius:50%;background:var(--shell);cursor:pointer}
 .burger i{position:absolute;left:50%;top:50%;width:1rem;height:1px;background:var(--espresso);translate:-50% 0;transition:transform .7s var(--ease)}
 .burger i:nth-child(1){transform:translateY(-3px)}
@@ -191,12 +198,10 @@ body.open .burger i:nth-child(2){transform:rotate(-45deg)}
 }
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* 2026 de puntos (de la prueba brutalista), en verde salvia y detrás del contenido */
 .hero{position:relative;overflow:hidden}
 .hero .wrap{position:relative;z-index:2}
 .bleed{position:absolute;right:-3vw;bottom:-.2em;font:400 min(44vw,40rem)/1 var(--macro);letter-spacing:-.06em;color:transparent;
   background:radial-gradient(circle,var(--sage) 34%,transparent 36%) 0 0/9px 9px;-webkit-background-clip:text;background-clip:text;opacity:.4;z-index:1;user-select:none;pointer-events:none}
-@media (max-width:900px){.bleed{font-size:72vw;right:-10vw;opacity:.4}}
 .core h3{font-weight:500}
 
 /* Regla lateral (de la prueba Impeccable): marcas cada milímetro, número cada centímetro, se desplaza con la página. 1 cm = 37.795 px de CSS. */
@@ -218,7 +223,6 @@ body.open .burger i:nth-child(2){transform:rotate(-45deg)}
 @keyframes blob1{to{transform:translate(30%,25%) scale(1.15)}}@keyframes blob2{to{transform:translate(-35%,-15%) scale(1.2)}}
 /* A-08 capas con profundidad: el 2026 responde al cursor */
 .hero{--dx:0;--dy:0}
-.bleed{transform:translate(calc(var(--dx)*26px),calc(var(--dy)*16px));transition:transform .5s cubic-bezier(.16,1,.3,1)}
 /* T-04 revelado por letras en el titular */
 .hero h1 .wd{display:inline-block;white-space:nowrap}
 .hero h1 .l{display:inline-block}
@@ -265,9 +269,13 @@ canvas.dotgrid{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointe
 .hero-img{position:absolute;right:0;bottom:0;width:min(56vw,900px);height:auto;z-index:1;mix-blend-mode:multiply;pointer-events:none;user-select:none;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 30%,#000 92%,transparent 100%);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 30%,#000 92%,transparent 100%);mask-composite:intersect}
-.hero .bleed{opacity:.28}
-.hero .side{grid-column:1/8;justify-self:start;flex-direction:row;align-items:center;gap:2rem;margin-top:.5rem}
-@media (max-width:900px){.hero-img{width:112vw;right:-30vw;opacity:.9}.hero .side{grid-column:1/-1;flex-wrap:wrap;gap:1.25rem}}
+/* Degradado general de puntos: más denso abajo a la izquierda y se desvanece hacia arriba a la derecha. Se mueve apenas con el cursor (A-08) */
+.hero::before{content:"";position:absolute;inset:-24px;z-index:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(86,100,81,.6) 1.1px,transparent 1.7px) 0 0/16px 16px;
+  -webkit-mask-image:linear-gradient(35deg,#000 0,rgba(0,0,0,.55) 38%,transparent 78%);mask-image:linear-gradient(35deg,#000 0,rgba(0,0,0,.55) 38%,transparent 78%);
+  opacity:.55;transform:translate(calc(var(--dx)*8px),calc(var(--dy)*6px));transition:transform .6s var(--ease)}
+.hero .side{grid-column:1/8;justify-self:start;margin-top:.5rem}
+html{scroll-padding-top:5.5rem}
 
 /* Caso de proyecto */
 .case{margin-bottom:clamp(6rem,11vw,10rem)}
@@ -334,10 +342,77 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   .row .fig{flex:none}
   .row .zoom img{height:auto}
   .contact .core>.sketch{width:100%;opacity:.24}
-  .hero{padding-bottom:19rem}
   .lb .frame{max-width:100vw;overflow:auto;-webkit-overflow-scrolling:touch}
   .lb img{max-width:none;max-height:none;width:auto;height:min(70dvh,calc(200vw / var(--a,1)))}
   .cf{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+
+/* C-06 cajetín de plano: ficha de cada proyecto */
+.caj{margin:.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid rgba(42,33,27,.55)}
+.caj div{padding:.75rem .9rem;border-right:1px solid rgba(42,33,27,.2);border-bottom:1px solid rgba(42,33,27,.2)}
+.caj div:nth-child(2n){border-right:0}
+.caj div:nth-last-child(-n+2){border-bottom:0}
+.caj dt{font:500 .5625rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin:0 0 .45rem}
+.caj dd{margin:0;font:400 .9rem/1.35 var(--sans);color:var(--espresso)}
+
+/* Perfil: listas de nivel y trayectoria */
+.skills{list-style:none;margin:0;padding:0}
+.skills li{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid rgba(42,33,27,.14);font-size:.9375rem}
+.skills li:last-child{border-bottom:0}
+.skills em{font-style:normal;color:var(--soft);text-align:right}
+.areas .a1{grid-column:span 5}.areas .a2{grid-column:span 3}.areas .a3{grid-column:span 4}
+.areas .core{min-height:0;justify-content:flex-start;gap:1rem}
+.tl-t{grid-column:1/9;margin:1.25rem 0 0;font:500 clamp(1.8rem,3vw,2.7rem)/1.05 var(--serif);letter-spacing:-.02em;text-wrap:balance}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:1.5rem;padding:1.5rem 0;border-top:1px solid rgba(42,33,27,.2)}
+.tl li:last-child{border-bottom:1px solid rgba(42,33,27,.2)}
+.tl .yr{font:400 clamp(1rem,1.5vw,1.25rem)/1.15 var(--macro);letter-spacing:-.03em}
+.tl .where{display:block;font:500 .625rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:.55rem}
+.tl h4{margin:0 0 .35rem;font:500 1.0625rem/1.3 var(--sans)}
+.tl p{margin:0;color:var(--soft);max-width:62ch}
+
+/* D-06 hueco de foto pendiente + D-03 marcas de registro: espacio para el archivo físico escaneado */
+.archive{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2.75rem 1.5rem;align-items:start;padding-top:1rem}
+.paper{margin:0;position:relative;transform:rotate(var(--r,0deg));transition:transform .8s var(--ease)}
+.paper:hover{transform:rotate(0deg) translateY(-4px)}
+.paper .scan{position:relative;display:grid;place-items:center;aspect-ratio:var(--ar,4/5);background:#FBF8F0;border-radius:2px;
+  box-shadow:0 0 0 1px rgba(42,33,27,.08),0 20px 36px -24px rgba(42,33,27,.5)}
+.paper .scan::before{content:"";position:absolute;inset:.75rem;border:1px dashed rgba(42,33,27,.28)}
+.paper .scan::after{content:"";position:absolute;inset:1.1rem;pointer-events:none;
+  background:
+   linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) left top/11px 1px no-repeat,linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) left top/1px 11px no-repeat,
+   linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) right top/11px 1px no-repeat,linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) right top/1px 11px no-repeat,
+   linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) left bottom/11px 1px no-repeat,linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) left bottom/1px 11px no-repeat,
+   linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) right bottom/11px 1px no-repeat,linear-gradient(rgba(42,33,27,.5),rgba(42,33,27,.5)) right bottom/1px 11px no-repeat}
+.paper .lab{position:relative;z-index:1;text-align:center;font:italic 400 clamp(1.1rem,1.7vw,1.45rem)/1.2 var(--serif);color:var(--soft);padding:0 1rem}
+.paper .lab small{display:block;margin-top:.6rem;font:500 .5625rem/1 var(--sans);font-style:normal;letter-spacing:.2em;text-transform:uppercase}
+.paper figcaption{margin-top:.85rem;font:500 .625rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);padding-left:.25rem}
+.tape{position:absolute;left:50%;top:-.8rem;width:5.5rem;height:1.6rem;translate:-50% 0;rotate:-3deg;background:rgba(227,201,168,.7);box-shadow:0 1px 2px rgba(42,33,27,.12);z-index:2}
+.paper img.scan{display:block;width:100%;height:auto;aspect-ratio:auto;background:none;mix-blend-mode:multiply}
+.paper img.scan::before,.paper img.scan::after{display:none}
+.paper.s1{grid-column:1/6;--ar:4/5}
+.paper.s2{grid-column:6/10;--ar:1/1;margin-top:3.5rem}
+.paper.s3{grid-column:10/13;--ar:3/4;margin-top:1rem}
+.paper.s4{grid-column:1/5;--ar:4/3;margin-top:1rem}
+.paper.s5{grid-column:5/13;--ar:16/7}
+
+/* Firma al final de la página (T-08: se escribe al entrar en pantalla) */
+footer .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem}
+.sigwrap{margin-top:3.5rem;padding-top:2rem;border-top:1px solid rgba(42,33,27,.2)}
+.sign{font:400 clamp(2.6rem,9vw,5rem)/1.15 var(--sign);margin:0;clip-path:inset(0 0 0 0);transition:clip-path 2.4s cubic-bezier(.16,1,.3,1) .2s}
+.js .sigwrap:not(.in) .sign{clip-path:inset(0 100% 0 0)}
+
+@media (max-width:900px){
+  .caj{margin-top:.25rem}
+  .areas .a1,.areas .a2,.areas .a3{grid-column:auto}
+  .tl li{grid-template-columns:minmax(0,1fr);gap:.6rem;padding:1.25rem 0}
+  .tl-t{grid-column:1/-1}
+  .archive{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.25rem 1rem}
+  .paper.s1,.paper.s4,.paper.s5{grid-column:1/-1}
+  .paper.s2{grid-column:1/2;margin-top:0}
+  .paper.s3{grid-column:2/3;margin-top:0}
+  .paper.s5{--ar:16/9}
 }
 
 /* ===== Móvil: portada completa, más aire, carruseles y toques ===== */
@@ -346,19 +421,19 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   .zoom .core::after{content:"";position:absolute;right:.7rem;top:.7rem;width:2rem;height:2rem;border-radius:50%;background:rgba(253,251,247,.92) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3.5v9M3.5 8h9' stroke='%232A211B' stroke-width='1.2' stroke-linecap='round' fill='none'/></svg>") center/.9rem no-repeat;box-shadow:0 0 0 1px var(--ring);pointer-events:none}
 }
 @media (max-width:900px){
-  /* Portada: texto primero y el render completo debajo, de borde a borde */
-  .hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding-block:6.5rem 0}
-  .hero .wrap{order:1}
-  .hero .grid{display:block}
-  .hero .tag{line-height:1.6;padding:.5rem .9rem;border-radius:1rem}
-  .hero h1{margin-top:1.75rem}
-  .hero .lead{margin-top:1.5rem}
-  .hero .side{margin-top:1.75rem}
-  .hero picture{order:2;display:block;position:relative;z-index:1;margin-top:1.5rem}
+  /* Portada: título y render primero (de borde a borde); el texto, más chico, va debajo */
+  .hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding-block:6rem 0}
+  .hero>.wrap,.hero .grid{display:contents}
+  .hero .tag,.hero h1,.hero .lead,.hero .side{position:relative;z-index:2;margin-inline:1.5rem}
+  .hero .tag{order:1;align-self:flex-start;line-height:1.6;padding:.5rem .9rem;border-radius:1rem;margin-top:0}
+  .hero h1{order:2;margin-top:1.1rem;max-width:none}
+  .hero picture{order:3;display:block;position:relative;z-index:1;margin-top:-.25rem}
   .hero-img{position:relative;right:auto;bottom:auto;display:block;width:100%;height:auto;opacity:1;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);mask-composite:intersect}
-  .hero .bleed{opacity:.2;font-size:80vw;right:-12vw;bottom:-.15em}
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 18%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 18%,#000 94%,transparent 100%);mask-composite:intersect}
+  .hero .lead{order:4;margin-top:.75rem;font-size:.9375rem;line-height:1.6;max-width:none}
+  .hero .side{order:5;margin-top:1.5rem;margin-bottom:3.5rem;align-self:flex-start}
+  .hero::before{opacity:.45}
 
   /* Ritmo: más aire entre secciones y menos huecos dentro de las tarjetas */
   .sec{padding-block:5rem}
@@ -394,6 +469,7 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   .island .logo{white-space:nowrap;font-size:1.1rem}
   .island{padding-left:1rem}
   .wrap{width:calc(100% - 2.5rem)}
+  .hero .tag,.hero h1,.hero .lead,.hero .side{margin-inline:1.25rem}
   .row.multi{margin-inline:-1.25rem;padding-inline:1.25rem;scroll-padding-inline:1.25rem}
   .stats{gap:1.5rem;flex-wrap:wrap}
   .stats b{font-size:clamp(2.4rem,11vw,3rem)}
@@ -406,20 +482,19 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
 <header class="island" role="banner">
   <a class="logo" href="#inicio" aria-label="Daniel Sierra, inicio">Daniel Sierra</a>
   <nav aria-label="Secciones">
-    <a href="#perfil">Perfil</a><a href="#proyectos">Proyectos</a><a href="#marcas">Marcas</a><a href="#preguntas">Preguntas</a>
+    <a href="#perfil">Perfil</a><a href="#proyectos">Proyectos</a><a href="#archivo">Archivo</a><a href="#marcas">Marcas</a><a href="#preguntas">Preguntas</a>
   </nav>
   <a class="btn" href="#contacto" data-mag>Contacto<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
   <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
 </header>
 <nav class="sheetnav" id="menu" aria-label="Menú">
-  <a href="#perfil">Perfil</a><a href="#proyectos">Proyectos</a><a href="#marcas">Marcas</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
+  <a href="#perfil">Perfil</a><a href="#proyectos">Proyectos</a><a href="#archivo">Archivo</a><a href="#marcas">Marcas</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
 </nav>
 
 <div class="ruler" aria-hidden="true"><output id="cm">0.0 cm</output></div>
 <main id="inicio">
   <section class="hero">
     <div class="blobs" aria-hidden="true"><i></i><i></i></div>
-    <span class="bleed" aria-hidden="true">2026</span>
     <picture><source media="(max-width:900px)" srcset="img/portada-m.webp" width="740" height="893"><img class="hero-img" src="img/portada.webp" width="960" height="893" alt="Render del edificio departamental de cinco niveles con celosías de madera, entre árboles, con el cielo claro de fondo" decoding="async" fetchpriority="high"></picture>
     <div class="wrap">
       <div class="grid">
@@ -428,7 +503,6 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
         <p class="lead">Hay materiales que se muestran como son, sin pulir, y aun así tienen un orden que no se improvisa. Eso es lo que me interesa de la arquitectura: la estructura que se ve, la piedra que se deja tal cual, el plano que alguien se tomó el tiempo de resolver. Para la arquitectura uso el nombre Rohbau, que en alemán es la estructura de un edificio antes de los acabados. Lo demás lo voy encontrando con el celular en la mano, mirando la ciudad de cerca.</p>
         <div class="side">
           <a class="btn" href="#perfil" data-mag>Conocer el perfil<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
-          <p class="sign">Daniel Sierra</p>
         </div>
       </div>
     </div>
@@ -440,15 +514,15 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
         <i class="gl" aria-hidden="true"></i>
         <span class="tag">Perfil</span>
         <h2 id="perfil-t">Quién soy, sin adornos.</h2>
-        <p>Soy egresado de Arquitectura por la Universidad Lucerna y cursé el Diplomado en Proyectos a Escala. Mi experiencia también incluye compras, abastecimiento y coordinación de operaciones.</p>
-        <div class="stats" style="grid-column:1/-1"><div><b data-count="5">5</b><span>Herramientas</span></div><div><b data-count="1">1</b><span>Diplomado</span></div><div><b data-count="3">3</b><span>Marcas</span></div></div>
+        <p>Egresado de Arquitectura por la Universidad Lucerna. Me interesan los proyectos donde el diseño, la planificación y la administración de recursos se piensan juntos, porque un edificio también se decide en la compra, en el inventario y en el calendario.</p>
+        <div class="stats" style="grid-column:1/-1"><div><b data-count="3">3</b><span>Proyectos</span></div><div><b data-count="2">2</b><span>Talleres</span></div><div><b data-count="2">2</b><span>Idiomas</span></div></div>
       </div>
       <div class="areas">
-        <div class="bezel sage a1 reveal"><div class="core"><h3>Formación</h3><p>Arquitectura en la Universidad Lucerna, más el Diplomado en Proyectos a Escala.</p></div></div>
-        <div class="bezel a2 reveal"><div class="core"><h3>Idiomas</h3><p>Español e inglés, este último en nivel B2.</p></div></div>
-        <div class="bezel a3 reveal"><div class="core"><h3>Herramientas</h3><p>AutoCAD y Revit para dibujo y modelado, Photoshop y Canva para imagen, y Office para documentos.</p></div></div>
-        <div class="bezel a4 reveal"><div class="core"><h3>Oficio</h3><p>Compras, abastecimiento y coordinación de operaciones, además del dibujo y el proyecto.</p></div></div>
-        <div class="bezel dark a5 reveal"><div class="core"><h3 style="color:var(--cream)">Mirada</h3><p>Documento la ciudad con el celular, desde la ventana de un tren o desde la calle. Fotografío piedras, etiquetas y espacios, sin personas y sin pulir de más.</p></div></div>
+        <div class="bezel sage a1 reveal"><div class="core"><h3>Herramientas</h3><ul class="skills"><li>AutoCAD<em>Intermedio</em></li><li>Revit<em>Intermedio</em></li><li>Photoshop<em>Nociones básicas</em></li><li>Canva<em>Presentaciones</em></li><li>Office y Google Workspace<em>Paquetería</em></li><li>Planos digitales y físicos<em>Lectura y gestión</em></li></ul></div></div>
+        <div class="bezel a2 reveal"><div class="core"><h3>Idiomas</h3><ul class="skills"><li>Español<em>Nativo</em></li><li>Inglés<em>B2</em></li></ul></div></div>
+        <div class="bezel dark a3 reveal"><div class="core"><h3 style="color:var(--cream)">Mirada</h3><p>Documento la ciudad con el celular, desde la ventana de un tren o desde la calle. Fotografío piedras, etiquetas y espacios, sin personas y sin pulir de más.</p></div></div>
+        <h3 class="tl-t reveal">Trayectoria. De la formación al oficio.</h3>
+        <ol class="tl" style="grid-column:1/-1"><li class="reveal"><div class="yr">2022 – 2025</div><div><span class="where">Universidad Lucerna</span><h4>Licenciatura en Arquitectura</h4><p>Egreso de la carrera de Arquitectura.</p></div></li><li class="reveal"><div class="yr">2023</div><div><span class="where">Trabajo en equipo</span><h4>Proyecto Aula Lúdica</h4><p>Proyecto desarrollado en equipo durante la carrera.</p></div></li><li class="reveal"><div class="yr">2024</div><div><span class="where">Talleres</span><h4>Normativa Urbana y Licencias · Análisis de Riesgo y Topografía</h4><p>Dos talleres que acercan el proyecto a lo que se pide en trámite y en terreno.</p></div></li><li class="reveal"><div class="yr">Jun – Ago 2024</div><div><span class="where">Experiencia</span><h4>Coordinación de operaciones</h4><p>Seguimiento de actividades y recursos de operación.</p></div></li><li class="reveal"><div class="yr">Ago 2024 – Ago 2025</div><div><span class="where">Experiencia</span><h4>Auxiliar en compras y suministros</h4><p>Compras, abastecimiento e inventario: la parte de la obra que se decide antes de construir.</p></div></li><li class="reveal"><div class="yr">2026</div><div><span class="where">Formación</span><h4>Diplomado en Proyectos a Escala</h4><p>Formación complementaria en proyecto.</p></div></li></ol>
       </div>
     </div>
   </section>
@@ -469,10 +543,10 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
           <div class="case-media tall reveal"><figure class="fig " style="--a:0.463"><button class="zoom" type="button" data-full="img/p01-render-fachada-bn.webp" data-cap="Render · fachada" aria-label="Ampliar: Render · fachada"><span class="bezel"><span class="core"><img src="img/p01-render-fachada-bn.webp" width="704" height="1521" alt="Render en blanco y negro de la fachada: cinco niveles con celosías de madera, balcones y grandes ventanales" loading="lazy" decoding="async"></span></span></button><figcaption>Render · fachada</figcaption></figure></div>
           <div class="case-text reveal">
             <b class="pn">P-01</b>
-            <div class="meta"><span class="tag">Vivienda</span><span class="tag">5 niveles</span><span class="tag">Concreto, madera, vidrio</span></div>
             <h3 id="p01-t">Edificio departamental 01</h3>
             <p class="sub">Vivienda vertical: material y ritmo</p>
             <p>Un edificio que nace de la tensión entre lo colectivo y lo privado. Cinco niveles que se apilan con orden pero respiran hacia el exterior a través de balcones, celosías de madera y grandes ventanales. La materialidad, concreto, madera y vidrio, no es decoración: es el argumento del proyecto.</p>
+            <dl class="caj"><div><dt>Tipo</dt><dd>Vivienda vertical</dd></div><div><dt>Niveles</dt><dd>5</dd></div><div><dt>Materiales</dt><dd>Concreto, madera y vidrio</dd></div><div><dt>Imágenes</dt><dd>7 · renders, planta, alzados y cortes</dd></div></dl>
             <div class="ctx"><span class="tag">Contexto urbano</span><p>En una ciudad que crece sin parar, el edificio propone una alternativa contemporánea a la vivienda urbana. Cinco niveles que optimizan el suelo sin renunciar a la calidad espacial: una respuesta compacta, digna y bien resuelta para quienes eligen vivir en la ciudad.</p></div>
           </div>
         </div>
@@ -484,10 +558,10 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
           <div class="case-media wide reveal"><figure class="fig wide" style="--a:1.763"><button class="zoom" type="button" data-full="img/p02-isometrico-bn.webp" data-cap="Render · isométrico" aria-label="Ampliar: Render · isométrico"><span class="bezel"><span class="core"><img src="img/p02-isometrico-bn.webp" width="1354" height="768" alt="Vista isométrica en blanco y negro: volúmenes blancos alrededor de patios con vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Render · isométrico</figcaption></figure></div>
           <div class="case-text reveal">
             <b class="pn">P-02</b>
-            <div class="meta"><span class="tag">Cultural</span><span class="tag">Auditorio</span><span class="tag">Sala de proyección</span></div>
             <h3 id="p02-t">Casa de cultura 02</h3>
             <p class="sub">Espacio público, luz y silencio</p>
             <p>Un edificio que no compite con quien lo habita. Volúmenes puros y horizontales organizados alrededor de patios interiores que traen la naturaleza al centro de la vida cultural. La blancura no es ausencia sino invitación: cada vano, cada sombra, cada árbol plantado adentro forma parte del proyecto.</p>
+            <dl class="caj"><div><dt>Tipo</dt><dd>Cultural</dd></div><div><dt>Programa</dt><dd>Auditorio, sala de proyección, taquilla y servicios</dd></div><div><dt>Partido</dt><dd>Volúmenes horizontales alrededor de patios</dd></div><div><dt>Imágenes</dt><dd>6 · renders, plantas y cortes</dd></div></dl>
             <div class="ctx"><span class="tag">Contexto y programa</span><p>El programa articula usos diversos, auditorio, sala de proyección, taquilla y áreas de servicio, sin perder la coherencia espacial del conjunto. La planta se lee como un recorrido: entras, el edificio te guía, y en cada giro aparece un patio, una pausa, una vista.</p></div>
           </div>
         </div>
@@ -499,10 +573,10 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
           <div class="case-media plan reveal"><figure class="fig " style="--a:0.812"><button class="zoom" type="button" data-full="img/p03-planta.webp" data-cap="Planta arquitectónica" aria-label="Ampliar: Planta arquitectónica"><span class="bezel"><span class="core"><img src="img/p03-planta.webp" width="988" height="1217" alt="Planta arquitectónica de la vivienda con mobiliario y cotas" loading="lazy" decoding="async"></span></span></button><figcaption>Planta arquitectónica</figcaption></figure></div>
           <div class="case-text reveal">
             <b class="pn">P-03</b>
-            <div class="meta"><span class="tag">Vivienda</span><span class="tag">Un nivel</span><span class="tag">Dibujo técnico</span></div>
             <h3 id="p03-t">Vivienda unifamiliar</h3>
             <p class="sub">Documentación técnica</p>
             <p>Ejercicio de representación arquitectónica enfocado en la precisión del dibujo técnico. Planta arquitectónica y cortes transversales que documentan la distribución interior de una vivienda unifamiliar de un solo nivel.</p>
+            <dl class="caj"><div><dt>Tipo</dt><dd>Vivienda unifamiliar</dd></div><div><dt>Niveles</dt><dd>1</dd></div><div><dt>Enfoque</dt><dd>Dibujo técnico</dd></div><div><dt>Imágenes</dt><dd>3 · planta y cortes</dd></div></dl>
             
           </div>
         </div>
@@ -527,7 +601,26 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
     </div>
   </section>
 
-  <section class="sec" id="preguntas" aria-labelledby="preguntas-t" style="padding-top:0">
+<section class="sec" id="archivo" aria-labelledby="archivo-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <i class="gl" aria-hidden="true"></i>
+        <span class="tag">Archivo</span>
+        <h2 id="archivo-t">Lo que se queda en papel.</h2>
+        <p>Croquis, notas de obra, maquetas y esos dibujos que no llegaron a plano. Aquí irán, escaneados tal cual, con sus dobleces y tachones.</p>
+      </div>
+      <!-- Para llenar un espacio: sustituye el div.scan por <img class="scan" src="img/archivo-xx.webp" width=".." height=".." alt="descripción" loading="lazy"> dentro de la misma figure. -->
+      <div class="archive">
+        <figure class="paper s1 reveal" style="--r:-1.2deg"><i class="tape" aria-hidden="true"></i><div class="scan" role="img" aria-label="Espacio reservado para croquis escaneado"><span class="lab">Croquis<small>Escaneo pendiente</small></span></div><figcaption>A-01</figcaption></figure>
+        <figure class="paper s2 reveal" style="--r:1deg"><i class="tape" aria-hidden="true"></i><div class="scan" role="img" aria-label="Espacio reservado para libreta escaneado"><span class="lab">Libreta<small>Escaneo pendiente</small></span></div><figcaption>A-02</figcaption></figure>
+        <figure class="paper s3 reveal" style="--r:-.6deg"><i class="tape" aria-hidden="true"></i><div class="scan" role="img" aria-label="Espacio reservado para notas de obra escaneado"><span class="lab">Notas de obra<small>Escaneo pendiente</small></span></div><figcaption>A-03</figcaption></figure>
+        <figure class="paper s4 reveal" style="--r:1.4deg"><i class="tape" aria-hidden="true"></i><div class="scan" role="img" aria-label="Espacio reservado para maqueta escaneado"><span class="lab">Maqueta<small>Escaneo pendiente</small></span></div><figcaption>A-04</figcaption></figure>
+        <figure class="paper s5 reveal" style="--r:-.5deg"><i class="tape" aria-hidden="true"></i><div class="scan" role="img" aria-label="Espacio reservado para dibujo a mano escaneado"><span class="lab">Dibujo a mano<small>Escaneo pendiente</small></span></div><figcaption>A-05</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="preguntas" aria-labelledby="preguntas-t" style="padding-top:0">
     <div class="wrap">
       <div class="head reveal">
         <i class="gl" aria-hidden="true"></i>
@@ -537,7 +630,8 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
       <div class="faq">
         <details class="bezel reveal"><summary><span>¿Qué diferencia hay entre Daniel Sierra y Werkstatt?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Daniel Sierra soy yo y lo que hago bajo mi nombre. Werkstatt es el estudio, con su propia web y sus propios servicios para clientes.</p></div></details>
         <details class="bezel reveal"><summary><span>¿Qué incluye cada proyecto?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Imágenes del proyecto y su documentación técnica: plantas, cortes y alzados. Toca cualquier imagen para verla más grande.</p></div></details>
-        <details class="bezel reveal"><summary><span>¿Con qué programas trabajas?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>AutoCAD y Revit para dibujo y modelado, Photoshop y Canva para imagen, y Office para documentos.</p></div></details>
+        <details class="bezel reveal"><summary><span>¿Con qué programas trabajas?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>AutoCAD y Revit en nivel intermedio para dibujo y modelado, Photoshop en nociones básicas, Canva para presentaciones y Office y Google Workspace para documentos. También leo y gestiono planos digitales y físicos.</p></div></details>
+        <details class="bezel reveal"><summary><span>¿Hay proyectos hechos en equipo?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Sí. El proyecto Aula Lúdica, de 2023, lo desarrollé en equipo durante la carrera.</p></div></details>
         <details class="bezel reveal"><summary><span>¿Cómo te contacto?</span><span class="plus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></span></summary><div class="ans"><p>Por correo, desde la sección de contacto. Mi diario está en @derstahlbeton, en Instagram.</p></div></details>
       </div>
     </div>
@@ -555,7 +649,7 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
         <p class="ffnote">Al escribir, se abre tu correo con el mensaje listo.</p>
         <dl class="cf">
           <div><dt>Correo</dt><dd><a href="mailto:danielsierrayanez@icloud.com">danielsierrayanez@icloud.com</a></dd></div>
-          <div><dt>Ubicación</dt><dd>Ciudad de México</dd></div>
+          <div><dt>Ubicación</dt><dd>Zona metropolitana de la Ciudad de México</dd></div>
           <div><dt>Redes</dt><dd>@derstahlbeton</dd></div>
         </dl>
         <a class="btn" id="mailto" href="mailto:danielsierrayanez@icloud.com?subject=Portafolio%20Daniel%20Sierra" style="align-self:flex-start" data-mag>Escribir<span class="ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span></a>
@@ -565,9 +659,12 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
 </main>
 
 <footer>
-  <div class="wrap row">
-    <span class="nm">Daniel Sierra</span>
-    <p>Portafolio personal de Daniel Sierra. Piezas tomadas del catálogo de efectos, escritas desde cero con ideas de Taste Skill (MIT) e Impeccable (Apache-2.0), sin copiar su texto ni su código. Tipografías con licencia SIL OFL 1.1.</p>
+  <div class="wrap">
+    <div class="foot-top row">
+      <span class="nm">Daniel Sierra</span>
+      <p>Portafolio personal de Daniel Sierra. Piezas tomadas del catálogo de efectos, escritas desde cero con ideas de Taste Skill (MIT) e Impeccable (Apache-2.0), sin copiar su texto ni su código. Tipografías con licencia SIL OFL 1.1.</p>
+    </div>
+    <div class="sigwrap reveal"><p class="sign">Daniel Sierra</p></div>
   </div>
 </footer>
 
