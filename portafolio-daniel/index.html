@@ -339,6 +339,65 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   .lb img{max-width:none;max-height:none;width:auto;height:min(70dvh,calc(200vw / var(--a,1)))}
   .cf{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* ===== Móvil: portada completa, más aire, carruseles y toques ===== */
+@media (hover:none){
+  .zoom .core{position:relative}
+  .zoom .core::after{content:"";position:absolute;right:.7rem;top:.7rem;width:2rem;height:2rem;border-radius:50%;background:rgba(253,251,247,.92) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3.5v9M3.5 8h9' stroke='%232A211B' stroke-width='1.2' stroke-linecap='round' fill='none'/></svg>") center/.9rem no-repeat;box-shadow:0 0 0 1px var(--ring);pointer-events:none}
+}
+@media (max-width:900px){
+  /* Portada: texto primero y el render completo debajo, de borde a borde */
+  .hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding-block:6.5rem 0}
+  .hero .wrap{order:1}
+  .hero .grid{display:block}
+  .hero .tag{line-height:1.6;padding:.5rem .9rem;border-radius:1rem}
+  .hero h1{margin-top:1.75rem}
+  .hero .lead{margin-top:1.5rem}
+  .hero .side{margin-top:1.75rem}
+  .hero picture{order:2;display:block;position:relative;z-index:1;margin-top:1.5rem}
+  .hero-img{position:relative;right:auto;bottom:auto;display:block;width:100%;height:auto;opacity:1;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);mask-composite:intersect}
+  .hero .bleed{opacity:.2;font-size:80vw;right:-12vw;bottom:-.15em}
+
+  /* Ritmo: más aire entre secciones y menos huecos dentro de las tarjetas */
+  .sec{padding-block:5rem}
+  .head{gap:1rem;margin-bottom:2.25rem}
+  .areas .core{min-height:0;justify-content:flex-start;gap:.75rem}
+  .areas{gap:1rem}
+  .steps{padding-bottom:0!important;gap:1rem}
+  .case{margin-bottom:5.5rem}
+  .case-top,.case-top.rev{gap:1.75rem}
+  .case-text{gap:1rem;padding-top:0}
+  .case-text .sub{padding-bottom:.75rem}
+
+  /* Galería: las filas con varias imágenes pasan a carrusel horizontal */
+  .gal{gap:1.5rem;margin-top:2rem}
+  .row.multi{flex-direction:row;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:-.5rem -1.5rem;padding:.5rem 1.5rem 1rem;scroll-padding-inline:1.5rem;overscroll-behavior-x:contain}
+  .row.multi::-webkit-scrollbar{display:none}
+  .row.multi .fig{flex:0 0 min(74%,19rem);scroll-snap-align:start}
+  .row.multi .fig.wide{flex-basis:min(88%,26rem)}
+  .row.multi{align-items:flex-start}
+  .row.multi .zoom{flex:none}
+  .row.multi .zoom .bezel,.row.multi .zoom .core{height:auto}
+  .row.multi .zoom img{height:auto}
+
+  /* Contacto: una columna para que el correo no se encime */
+  .contact .core{padding:2rem 1.5rem}
+  .cf{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .cf dd{overflow-wrap:anywhere;font-size:1.25rem}
+  .ff{gap:1.25rem}
+  footer{padding-block:2.5rem 3.5rem}
+}
+@media (max-width:480px){
+  .island .logo{white-space:nowrap;font-size:1.1rem}
+  .island{padding-left:1rem}
+  .wrap{width:calc(100% - 2.5rem)}
+  .row.multi{margin-inline:-1.25rem;padding-inline:1.25rem;scroll-padding-inline:1.25rem}
+  .stats{gap:1.5rem;flex-wrap:wrap}
+  .stats b{font-size:clamp(2.4rem,11vw,3rem)}
+}
 </style>
 </head>
 <body>
@@ -361,7 +420,7 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   <section class="hero">
     <div class="blobs" aria-hidden="true"><i></i><i></i></div>
     <span class="bleed" aria-hidden="true">2026</span>
-    <img class="hero-img" src="img/portada.webp" width="960" height="893" alt="Render del edificio departamental de cinco niveles con celosías de madera, entre árboles, con el cielo claro de fondo" decoding="async" fetchpriority="high">
+    <picture><source media="(max-width:900px)" srcset="img/portada-m.webp" width="740" height="893"><img class="hero-img" src="img/portada.webp" width="960" height="893" alt="Render del edificio departamental de cinco niveles con celosías de madera, entre árboles, con el cielo claro de fondo" decoding="async" fetchpriority="high"></picture>
     <div class="wrap">
       <div class="grid">
         <span class="tag" style="grid-column:1/-1;justify-self:start">Egresado de Arquitectura · portafolio personal</span>
@@ -417,12 +476,12 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
             <div class="ctx"><span class="tag">Contexto urbano</span><p>En una ciudad que crece sin parar, el edificio propone una alternativa contemporánea a la vivienda urbana. Cinco niveles que optimizan el suelo sin renunciar a la calidad espacial: una respuesta compacta, digna y bien resuelta para quienes eligen vivir en la ciudad.</p></div>
           </div>
         </div>
-        <div class="gal"><div class="row reveal"><figure class="fig " style="--a:2.155"><button class="zoom" type="button" data-full="img/p01-render-posterior.webp" data-cap="Render · fachada posterior" aria-label="Ampliar: Render · fachada posterior"><span class="bezel"><span class="core"><img src="img/p01-render-posterior.webp" width="1513" height="702" alt="Render de la fachada posterior: muro central de ladrillo y, a los lados, niveles con celosías de madera" loading="lazy" decoding="async"></span></span></button><figcaption>Render · fachada posterior</figcaption></figure><figure class="fig " style="--a:0.610"><button class="zoom" type="button" data-full="img/p01-render-alzado-color.webp" data-cap="Render · alzado" aria-label="Ampliar: Render · alzado"><span class="bezel"><span class="core"><img src="img/p01-render-alzado-color.webp" width="480" height="787" alt="Render a color de un alzado con ejes de referencia" loading="lazy" decoding="async"></span></span></button><figcaption>Render · alzado</figcaption></figure></div><div class="row reveal"><figure class="fig " style="--a:2.164"><button class="zoom" type="button" data-full="img/p01-planta.webp" data-cap="Planta arquitectónica" aria-label="Ampliar: Planta arquitectónica"><span class="bezel"><span class="core"><img src="img/p01-planta.webp" width="2400" height="1109" alt="Planta arquitectónica del edificio con ejes, muros, mobiliario y núcleo de escaleras" loading="lazy" decoding="async"></span></span></button><figcaption>Planta arquitectónica</figcaption></figure></div><div class="row reveal"><figure class="fig " style="--a:0.618"><button class="zoom" type="button" data-full="img/p01-fachada-lineas.webp" data-cap="Alzado" aria-label="Ampliar: Alzado"><span class="bezel"><span class="core"><img src="img/p01-fachada-lineas.webp" width="585" height="947" alt="Alzado de la fachada en líneas, con ejes y cotas" loading="lazy" decoding="async"></span></span></button><figcaption>Alzado</figcaption></figure><figure class="fig " style="--a:0.609"><button class="zoom" type="button" data-full="img/p01-corte-lineas.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p01-corte-lineas.webp" width="468" height="768" alt="Corte transversal en líneas" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure><figure class="fig " style="--a:2.164"><button class="zoom" type="button" data-full="img/p01-corte-escaleras.webp" data-cap="Corte · núcleo de escaleras" aria-label="Ampliar: Corte · núcleo de escaleras"><span class="bezel"><span class="core"><img src="img/p01-corte-escaleras.webp" width="1266" height="585" alt="Corte longitudinal con el núcleo de escaleras al centro" loading="lazy" decoding="async"></span></span></button><figcaption>Corte · núcleo de escaleras</figcaption></figure></div></div>
+        <div class="gal"><div class="row reveal one"><figure class="fig wide" style="--a:2.379"><button class="zoom" type="button" data-full="img/p01-render-posterior.webp" data-cap="Render · fachada posterior" aria-label="Ampliar: Render · fachada posterior"><span class="bezel"><span class="core"><img src="img/p01-render-posterior.webp" width="1513" height="636" alt="Render de la fachada posterior: muro central de ladrillo y, a los lados, niveles con celosías de madera" loading="lazy" decoding="async"></span></span></button><figcaption>Render · fachada posterior</figcaption></figure></div><div class="row reveal one"><figure class="fig wide" style="--a:2.164"><button class="zoom" type="button" data-full="img/p01-planta.webp" data-cap="Planta arquitectónica" aria-label="Ampliar: Planta arquitectónica"><span class="bezel"><span class="core"><img src="img/p01-planta.webp" width="2400" height="1109" alt="Planta arquitectónica del edificio con ejes, muros, mobiliario y núcleo de escaleras" loading="lazy" decoding="async"></span></span></button><figcaption>Planta arquitectónica</figcaption></figure></div><div class="row reveal multi"><figure class="fig " style="--a:0.610"><button class="zoom" type="button" data-full="img/p01-render-alzado-color.webp" data-cap="Render · alzado" aria-label="Ampliar: Render · alzado"><span class="bezel"><span class="core"><img src="img/p01-render-alzado-color.webp" width="480" height="787" alt="Render a color de un alzado con ejes de referencia" loading="lazy" decoding="async"></span></span></button><figcaption>Render · alzado</figcaption></figure><figure class="fig " style="--a:0.618"><button class="zoom" type="button" data-full="img/p01-fachada-lineas.webp" data-cap="Alzado en líneas" aria-label="Ampliar: Alzado en líneas"><span class="bezel"><span class="core"><img src="img/p01-fachada-lineas.webp" width="585" height="947" alt="Alzado de la fachada en líneas, con ejes y cotas" loading="lazy" decoding="async"></span></span></button><figcaption>Alzado en líneas</figcaption></figure><figure class="fig " style="--a:0.609"><button class="zoom" type="button" data-full="img/p01-corte-lineas.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p01-corte-lineas.webp" width="468" height="768" alt="Corte transversal en líneas" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure></div><div class="row reveal one"><figure class="fig wide" style="--a:2.164"><button class="zoom" type="button" data-full="img/p01-corte-escaleras.webp" data-cap="Corte · núcleo de escaleras" aria-label="Ampliar: Corte · núcleo de escaleras"><span class="bezel"><span class="core"><img src="img/p01-corte-escaleras.webp" width="1266" height="585" alt="Corte longitudinal con el núcleo de escaleras al centro" loading="lazy" decoding="async"></span></span></button><figcaption>Corte · núcleo de escaleras</figcaption></figure></div></div>
       </article>
       <article class="case" id="p02" aria-labelledby="p02-t">
         <i class="gl" aria-hidden="true"></i>
         <div class="case-top rev">
-          <div class="case-media wide reveal"><figure class="fig " style="--a:1.763"><button class="zoom" type="button" data-full="img/p02-isometrico-bn.webp" data-cap="Render · isométrico" aria-label="Ampliar: Render · isométrico"><span class="bezel"><span class="core"><img src="img/p02-isometrico-bn.webp" width="1354" height="768" alt="Vista isométrica en blanco y negro: volúmenes blancos alrededor de patios con vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Render · isométrico</figcaption></figure></div>
+          <div class="case-media wide reveal"><figure class="fig wide" style="--a:1.763"><button class="zoom" type="button" data-full="img/p02-isometrico-bn.webp" data-cap="Render · isométrico" aria-label="Ampliar: Render · isométrico"><span class="bezel"><span class="core"><img src="img/p02-isometrico-bn.webp" width="1354" height="768" alt="Vista isométrica en blanco y negro: volúmenes blancos alrededor de patios con vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Render · isométrico</figcaption></figure></div>
           <div class="case-text reveal">
             <b class="pn">P-02</b>
             <div class="meta"><span class="tag">Cultural</span><span class="tag">Auditorio</span><span class="tag">Sala de proyección</span></div>
@@ -432,7 +491,7 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
             <div class="ctx"><span class="tag">Contexto y programa</span><p>El programa articula usos diversos, auditorio, sala de proyección, taquilla y áreas de servicio, sin perder la coherencia espacial del conjunto. La planta se lee como un recorrido: entras, el edificio te guía, y en cada giro aparece un patio, una pausa, una vista.</p></div>
           </div>
         </div>
-        <div class="gal"><div class="row reveal"><figure class="fig " style="--a:1.763"><button class="zoom" type="button" data-full="img/p02-isometrico-color.webp" data-cap="Render · isométrico a color" aria-label="Ampliar: Render · isométrico a color"><span class="bezel"><span class="core"><img src="img/p02-isometrico-color.webp" width="1354" height="768" alt="Vista isométrica a color de los volúmenes blancos, patios y vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Render · isométrico a color</figcaption></figure><figure class="fig " style="--a:1.365"><button class="zoom" type="button" data-full="img/p02-planta-conjunto.webp" data-cap="Planta de conjunto" aria-label="Ampliar: Planta de conjunto"><span class="bezel"><span class="core"><img src="img/p02-planta-conjunto.webp" width="819" height="600" alt="Planta de conjunto con ejes y los volúmenes en gris" loading="lazy" decoding="async"></span></span></button><figcaption>Planta de conjunto</figcaption></figure></div><div class="row reveal"><figure class="fig " style="--a:2.125"><button class="zoom" type="button" data-full="img/p02-planta-muros.webp" data-cap="Planta de muros" aria-label="Ampliar: Planta de muros"><span class="bezel"><span class="core"><img src="img/p02-planta-muros.webp" width="1292" height="608" alt="Planta de muros con ejes de referencia" loading="lazy" decoding="async"></span></span></button><figcaption>Planta de muros</figcaption></figure></div><div class="row reveal"><figure class="fig " style="--a:5.711"><button class="zoom" type="button" data-full="img/p02-corte-entorno.webp" data-cap="Corte · con entorno" aria-label="Ampliar: Corte · con entorno"><span class="bezel"><span class="core"><img src="img/p02-corte-entorno.webp" width="1976" height="346" alt="Corte en render con el entorno y la vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Corte · con entorno</figcaption></figure></div><div class="row reveal"><figure class="fig " style="--a:5.707"><button class="zoom" type="button" data-full="img/p02-corte-lineas.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p02-corte-lineas.webp" width="2026" height="355" alt="Corte en líneas del conjunto" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure></div></div>
+        <div class="gal"><div class="row reveal multi"><figure class="fig wide" style="--a:1.763"><button class="zoom" type="button" data-full="img/p02-isometrico-color.webp" data-cap="Render · isométrico a color" aria-label="Ampliar: Render · isométrico a color"><span class="bezel"><span class="core"><img src="img/p02-isometrico-color.webp" width="1354" height="768" alt="Vista isométrica a color de los volúmenes blancos, patios y vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Render · isométrico a color</figcaption></figure><figure class="fig " style="--a:1.365"><button class="zoom" type="button" data-full="img/p02-planta-conjunto.webp" data-cap="Planta de conjunto" aria-label="Ampliar: Planta de conjunto"><span class="bezel"><span class="core"><img src="img/p02-planta-conjunto.webp" width="819" height="600" alt="Planta de conjunto con ejes y los volúmenes en gris" loading="lazy" decoding="async"></span></span></button><figcaption>Planta de conjunto</figcaption></figure></div><div class="row reveal one"><figure class="fig wide" style="--a:2.125"><button class="zoom" type="button" data-full="img/p02-planta-muros.webp" data-cap="Planta de muros" aria-label="Ampliar: Planta de muros"><span class="bezel"><span class="core"><img src="img/p02-planta-muros.webp" width="1292" height="608" alt="Planta de muros con ejes de referencia" loading="lazy" decoding="async"></span></span></button><figcaption>Planta de muros</figcaption></figure></div><div class="row reveal one"><figure class="fig wide" style="--a:5.711"><button class="zoom" type="button" data-full="img/p02-corte-entorno.webp" data-cap="Corte · con entorno" aria-label="Ampliar: Corte · con entorno"><span class="bezel"><span class="core"><img src="img/p02-corte-entorno.webp" width="1976" height="346" alt="Corte en render con el entorno y la vegetación" loading="lazy" decoding="async"></span></span></button><figcaption>Corte · con entorno</figcaption></figure></div><div class="row reveal one"><figure class="fig wide" style="--a:5.707"><button class="zoom" type="button" data-full="img/p02-corte-lineas.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p02-corte-lineas.webp" width="2026" height="355" alt="Corte en líneas del conjunto" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure></div></div>
       </article>
       <article class="case" id="p03" aria-labelledby="p03-t">
         <i class="gl" aria-hidden="true"></i>
@@ -447,7 +506,7 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
             
           </div>
         </div>
-        <div class="gal"><div class="row reveal"><figure class="fig " style="--a:2.449"><button class="zoom" type="button" data-full="img/p03-corte-superior.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p03-corte-superior.webp" width="1266" height="517" alt="Corte de la vivienda, titulado Cortes" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure><figure class="fig " style="--a:2.813"><button class="zoom" type="button" data-full="img/p03-corte-inferior.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p03-corte-inferior.webp" width="1176" height="418" alt="Segundo corte de la vivienda" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure></div></div>
+        <div class="gal"><div class="row reveal multi"><figure class="fig wide" style="--a:2.449"><button class="zoom" type="button" data-full="img/p03-corte-superior.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p03-corte-superior.webp" width="1266" height="517" alt="Corte de la vivienda, titulado Cortes" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure><figure class="fig wide" style="--a:2.813"><button class="zoom" type="button" data-full="img/p03-corte-inferior.webp" data-cap="Corte" aria-label="Ampliar: Corte"><span class="bezel"><span class="core"><img src="img/p03-corte-inferior.webp" width="1176" height="418" alt="Segundo corte de la vivienda" loading="lazy" decoding="async"></span></span></button><figcaption>Corte</figcaption></figure></div></div>
       </article>
     </div>
   </section>

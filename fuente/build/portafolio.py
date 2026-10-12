@@ -25,12 +25,12 @@ dict(id="p01",n="P-01",titulo="Edificio departamental 01",sub="Vivienda vertical
  media=F("p01-render-fachada-bn.webp",704,1521,"Render en blanco y negro de la fachada: cinco niveles con celosías de madera, balcones y grandes ventanales","Render · fachada"),
  media_cls="tall",
  filas=[
-  [F("p01-render-posterior.webp",1513,702,"Render de la fachada posterior: muro central de ladrillo y, a los lados, niveles con celosías de madera","Render · fachada posterior"),
-   F("p01-render-alzado-color.webp",480,787,"Render a color de un alzado con ejes de referencia","Render · alzado")],
+  [F("p01-render-posterior.webp",1513,636,"Render de la fachada posterior: muro central de ladrillo y, a los lados, niveles con celosías de madera","Render · fachada posterior")],
   [F("p01-planta.webp",2400,1109,"Planta arquitectónica del edificio con ejes, muros, mobiliario y núcleo de escaleras","Planta arquitectónica")],
-  [F("p01-fachada-lineas.webp",585,947,"Alzado de la fachada en líneas, con ejes y cotas","Alzado"),
-   F("p01-corte-lineas.webp",468,768,"Corte transversal en líneas","Corte"),
-   F("p01-corte-escaleras.webp",1266,585,"Corte longitudinal con el núcleo de escaleras al centro","Corte · núcleo de escaleras")],
+  [F("p01-render-alzado-color.webp",480,787,"Render a color de un alzado con ejes de referencia","Render · alzado"),
+   F("p01-fachada-lineas.webp",585,947,"Alzado de la fachada en líneas, con ejes y cotas","Alzado en líneas"),
+   F("p01-corte-lineas.webp",468,768,"Corte transversal en líneas","Corte")],
+  [F("p01-corte-escaleras.webp",1266,585,"Corte longitudinal con el núcleo de escaleras al centro","Corte · núcleo de escaleras")],
  ]),
 dict(id="p02",n="P-02",titulo="Casa de cultura 02",sub="Espacio público, luz y silencio",
  tags=["Cultural","Auditorio","Sala de proyección"],
@@ -59,6 +59,7 @@ dict(id="p03",n="P-03",titulo="Vivienda unifamiliar",sub="Documentación técnic
 
 def fig(d,extra="",lazy=True):
     a=d["w"]/d["h"]
+    extra=(extra+(" wide" if a>1.5 else "")).strip()
     return (f'<figure class="fig {extra}" style="--a:{a:.3f}"><button class="zoom" type="button" data-full="img/{d["f"]}" data-cap="{E(d["cap"])}" aria-label="Ampliar: {E(d["cap"])}">'
             f'<span class="bezel"><span class="core"><img src="img/{d["f"]}" width="{d["w"]}" height="{d["h"]}" alt="{E(d["alt"])}" loading="lazy" decoding="async"></span></span></button>'
             f'<figcaption>{E(d["cap"])}</figcaption></figure>')
@@ -68,7 +69,7 @@ def caso(i,p):
     tags="".join(f'<span class="tag">{E(t)}</span>' for t in p["tags"])
     ctx=f'<div class="ctx"><span class="tag">{E(p["ctx"][0])}</span><p>{E(p["ctx"][1])}</p></div>' if p["ctx"] else ""
     txt="".join(f"<p>{E(t)}</p>" for t in p["textos"])
-    filas="".join('<div class="row reveal">'+"".join(fig(f) for f in fila)+'</div>' for fila in p["filas"])
+    filas="".join('<div class="row reveal '+("multi" if len(fila)>1 else "one")+'">'+"".join(fig(f) for f in fila)+'</div>' for fila in p["filas"])
     return f'''
       <article class="case" id="{p["id"]}" aria-labelledby="{p["id"]}-t">
         <i class="gl" aria-hidden="true"></i>
@@ -189,6 +190,65 @@ dialog.lb[open]{display:grid;place-items:center;animation:lbin .5s var(--ease)}
   .lb img{max-width:none;max-height:none;width:auto;height:min(70dvh,calc(200vw / var(--a,1)))}
   .cf{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* ===== Móvil: portada completa, más aire, carruseles y toques ===== */
+@media (hover:none){
+  .zoom .core{position:relative}
+  .zoom .core::after{content:"";position:absolute;right:.7rem;top:.7rem;width:2rem;height:2rem;border-radius:50%;background:rgba(253,251,247,.92) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 3.5v9M3.5 8h9' stroke='%232A211B' stroke-width='1.2' stroke-linecap='round' fill='none'/></svg>") center/.9rem no-repeat;box-shadow:0 0 0 1px var(--ring);pointer-events:none}
+}
+@media (max-width:900px){
+  /* Portada: texto primero y el render completo debajo, de borde a borde */
+  .hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding-block:6.5rem 0}
+  .hero .wrap{order:1}
+  .hero .grid{display:block}
+  .hero .tag{line-height:1.6;padding:.5rem .9rem;border-radius:1rem}
+  .hero h1{margin-top:1.75rem}
+  .hero .lead{margin-top:1.5rem}
+  .hero .side{margin-top:1.75rem}
+  .hero picture{order:2;display:block;position:relative;z-index:1;margin-top:1.5rem}
+  .hero-img{position:relative;right:auto;bottom:auto;display:block;width:100%;height:auto;opacity:1;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 24%,#000 94%,transparent 100%);mask-composite:intersect}
+  .hero .bleed{opacity:.2;font-size:80vw;right:-12vw;bottom:-.15em}
+
+  /* Ritmo: más aire entre secciones y menos huecos dentro de las tarjetas */
+  .sec{padding-block:5rem}
+  .head{gap:1rem;margin-bottom:2.25rem}
+  .areas .core{min-height:0;justify-content:flex-start;gap:.75rem}
+  .areas{gap:1rem}
+  .steps{padding-bottom:0!important;gap:1rem}
+  .case{margin-bottom:5.5rem}
+  .case-top,.case-top.rev{gap:1.75rem}
+  .case-text{gap:1rem;padding-top:0}
+  .case-text .sub{padding-bottom:.75rem}
+
+  /* Galería: las filas con varias imágenes pasan a carrusel horizontal */
+  .gal{gap:1.5rem;margin-top:2rem}
+  .row.multi{flex-direction:row;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:-.5rem -1.5rem;padding:.5rem 1.5rem 1rem;scroll-padding-inline:1.5rem;overscroll-behavior-x:contain}
+  .row.multi::-webkit-scrollbar{display:none}
+  .row.multi .fig{flex:0 0 min(74%,19rem);scroll-snap-align:start}
+  .row.multi .fig.wide{flex-basis:min(88%,26rem)}
+  .row.multi{align-items:flex-start}
+  .row.multi .zoom{flex:none}
+  .row.multi .zoom .bezel,.row.multi .zoom .core{height:auto}
+  .row.multi .zoom img{height:auto}
+
+  /* Contacto: una columna para que el correo no se encime */
+  .contact .core{padding:2rem 1.5rem}
+  .cf{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .cf dd{overflow-wrap:anywhere;font-size:1.25rem}
+  .ff{gap:1.25rem}
+  footer{padding-block:2.5rem 3.5rem}
+}
+@media (max-width:480px){
+  .island .logo{white-space:nowrap;font-size:1.1rem}
+  .island{padding-left:1rem}
+  .wrap{width:calc(100% - 2.5rem)}
+  .row.multi{margin-inline:-1.25rem;padding-inline:1.25rem;scroll-padding-inline:1.25rem}
+  .stats{gap:1.5rem;flex-wrap:wrap}
+  .stats b{font-size:clamp(2.4rem,11vw,3rem)}
+}
 '''
 sub1(r'\n</style>',css_new+'</style>',lit=True)
 
@@ -197,7 +257,7 @@ sub1(r'<title>.*?</title>','<title>Daniel Sierra | Portafolio</title>')
 sub1(r'<meta name="description"[^>]*>','<meta name="description" content="Portafolio de Daniel Sierra, egresado de Arquitectura: edificio departamental, casa de cultura y vivienda unifamiliar, con renders, plantas y cortes.">')
 
 # ---------- portada ----------
-sub1(r'(<span class="bleed" aria-hidden="true">2026</span>)',r'\1'+'\n    <img class="hero-img" src="img/portada.webp" width="960" height="893" alt="Render del edificio departamental de cinco niveles con celosías de madera, entre árboles, con el cielo claro de fondo" decoding="async" fetchpriority="high">')
+sub1(r'(<span class="bleed" aria-hidden="true">2026</span>)',r'\1'+'\n    <picture><source media="(max-width:900px)" srcset="img/portada-m.webp" width="740" height="893"><img class="hero-img" src="img/portada.webp" width="960" height="893" alt="Render del edificio departamental de cinco niveles con celosías de madera, entre árboles, con el cielo claro de fondo" decoding="async" fetchpriority="high"></picture>')
 
 # ---------- proyectos ----------
 sub1(r'<section class="sec" id="proyectos".*?</section>',proyectos,lit=True)
