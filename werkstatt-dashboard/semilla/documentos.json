@@ -1,0 +1,242 @@
+[
+  {
+    "id": "doc-01",
+    "nombre": "Hoja membretada",
+    "alias": "membrete",
+    "grupo": "Estudio",
+    "logo": "Madre",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-02",
+    "nombre": "Carta del estudio",
+    "alias": "carta werkstatt",
+    "grupo": "Estudio",
+    "logo": "Madre",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-03",
+    "nombre": "Carta personal",
+    "alias": "",
+    "grupo": "Estudio",
+    "logo": "Sin logo",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-04",
+    "nombre": "Manifiesto",
+    "alias": "",
+    "grupo": "Estudio",
+    "logo": "Sin logo",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-05",
+    "nombre": "Presentación personal",
+    "alias": "",
+    "grupo": "Estudio",
+    "logo": "Sin logo",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-06",
+    "nombre": "Portafolio o dossier",
+    "alias": "dossier",
+    "grupo": "Estudio",
+    "logo": "Madre",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-07",
+    "nombre": "Cotización",
+    "alias": "presupuesto",
+    "grupo": "Cliente",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-08",
+    "nombre": "Propuesta de servicios",
+    "alias": "",
+    "grupo": "Cliente",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-09",
+    "nombre": "Contrato de prestación de servicios",
+    "alias": "contrato",
+    "grupo": "Cliente",
+    "logo": "Madre",
+    "estado": "Por revisar",
+    "nota": "Borrador base: revisar con asesoría legal antes de usarlo con un cliente.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-10",
+    "nombre": "Recibo",
+    "alias": "anticipo, pago",
+    "grupo": "Cliente",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-11",
+    "nombre": "Minuta de reunión",
+    "alias": "",
+    "grupo": "Cliente",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-12",
+    "nombre": "Brief de cliente",
+    "alias": "brief",
+    "grupo": "Cliente",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-13",
+    "nombre": "Convenio de confidencialidad",
+    "alias": "NDA",
+    "grupo": "Cliente",
+    "logo": "Madre",
+    "estado": "Por revisar",
+    "nota": "Borrador base: revisar con asesoría legal antes de usarlo con un cliente.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-14",
+    "nombre": "Convenio de colaboración",
+    "alias": "",
+    "grupo": "Cliente",
+    "logo": "Madre",
+    "estado": "Por revisar",
+    "nota": "Borrador base: revisar con asesoría legal antes de usarlo con un cliente.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-15",
+    "nombre": "Licencia de uso de obra",
+    "alias": "cesión de derechos",
+    "grupo": "Cliente",
+    "logo": "Madre",
+    "estado": "Por revisar",
+    "nota": "Borrador base: revisar con asesoría legal antes de usarlo con un cliente.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-16",
+    "nombre": "Orden de cambio",
+    "alias": "cambio de alcance",
+    "grupo": "Obra",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-17",
+    "nombre": "Reporte de avance",
+    "alias": "reporte semanal",
+    "grupo": "Obra",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-18",
+    "nombre": "Acta de entrega y recepción",
+    "alias": "acta",
+    "grupo": "Obra",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-19",
+    "nombre": "Índice de planos",
+    "alias": "cajetín",
+    "grupo": "Obra",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-20",
+    "nombre": "Cédula de materiales",
+    "alias": "",
+    "grupo": "Obra",
+    "logo": "Rohbau",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-21",
+    "nombre": "Ficha técnica de pieza",
+    "alias": "ficha",
+    "grupo": "Muebles",
+    "logo": "Rohholz",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-22",
+    "nombre": "Cotización de pieza a medida",
+    "alias": "variantes",
+    "grupo": "Muebles",
+    "logo": "Rohholz",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-23",
+    "nombre": "Orden de producción",
+    "alias": "",
+    "grupo": "Muebles",
+    "logo": "Rohholz",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "doc-24",
+    "nombre": "Guía de cuidados y garantía",
+    "alias": "garantía",
+    "grupo": "Muebles",
+    "logo": "Rohholz",
+    "estado": "Implementado",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

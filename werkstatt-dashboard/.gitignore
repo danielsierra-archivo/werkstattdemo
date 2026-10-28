@@ -1,0 +1,6 @@
+# Datos reales del panel: viven solo en esta computadora
+data/
+respaldos/
+*.tmp
+node_modules/
+.DS_Store

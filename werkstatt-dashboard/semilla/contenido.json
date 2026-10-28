@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pub-01",
+    "fecha": "2026-10-26",
+    "cuenta": "@derstahlbeton",
+    "tipo": "Publicación",
+    "titulo": "Ejemplo: publicación 1",
+    "estado": "Publicada",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "pub-02",
+    "fecha": "2026-10-28",
+    "cuenta": "@derstahlbeton",
+    "tipo": "Publicación",
+    "titulo": "Ejemplo: publicación 2",
+    "estado": "Programada",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "pub-03",
+    "fecha": "2026-10-30",
+    "cuenta": "@derstahlbeton",
+    "tipo": "Carrusel",
+    "titulo": "Ejemplo: publicación 3",
+    "estado": "En preparación",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "pub-04",
+    "fecha": "2026-11-02",
+    "cuenta": "@rohesarchiv",
+    "tipo": "Carrusel",
+    "titulo": "Ejemplo: experiencia del mes",
+    "estado": "Idea",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

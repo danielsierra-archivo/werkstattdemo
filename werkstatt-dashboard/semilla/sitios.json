@@ -1,0 +1,42 @@
+[
+  {
+    "id": "web-01",
+    "nombre": "Werkstatt (portafolio)",
+    "tipo": "Principal",
+    "estado": "Publicado",
+    "url": "https://danielsierra-archivo.github.io/werkstatt",
+    "repo": "https://github.com/danielsierra-archivo/werkstatt",
+    "nota": "Demo v3 en la raíz; versiones anteriores en carpetas.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "web-02",
+    "nombre": "Werkstatt demo",
+    "tipo": "Demo",
+    "estado": "Publicado",
+    "url": "https://danielsierra-archivo.github.io/werkstattdemo",
+    "repo": "https://github.com/danielsierra-archivo/werkstattdemo",
+    "nota": "Pruebas, catálogo de efectos con código y landings.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "web-03",
+    "nombre": "Portafolio Daniel Sierra",
+    "tipo": "Demo",
+    "estado": "En desarrollo",
+    "url": "https://danielsierra-archivo.github.io/werkstattdemo/portafolio-daniel/",
+    "repo": "https://github.com/danielsierra-archivo/werkstattdemo",
+    "nota": "Carpeta portafolio-daniel del repo de demos.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "web-04",
+    "nombre": "Tienda borrador",
+    "tipo": "Borrador",
+    "estado": "Borrador",
+    "url": "https://danielsierra-archivo.github.io/werkstattdemo/tienda-borrador/",
+    "repo": "https://github.com/danielsierra-archivo/werkstattdemo",
+    "nota": "25 piezas de prueba con datos de ejemplo.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

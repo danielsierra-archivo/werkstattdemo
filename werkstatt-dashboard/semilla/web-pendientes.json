@@ -1,0 +1,37 @@
+[
+  {
+    "id": "wp-01",
+    "texto": "Agregar sección de preguntas frecuentes",
+    "estado": "Pendiente",
+    "nota": "",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "wp-02",
+    "texto": "Revisar contraste de color con la paleta ampliada",
+    "estado": "Pendiente",
+    "nota": "Cuando exista la propuesta de paleta.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "wp-03",
+    "texto": "Subir fotos y contenido real de proyectos",
+    "estado": "Pendiente",
+    "nota": "Fotos al Drive; textos reales después.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "wp-04",
+    "texto": "Definir y comprar el dominio principal",
+    "estado": "Pendiente",
+    "nota": "No nombrarlo en la web antes de comprarlo.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "wp-05",
+    "texto": "Juntar todas las webs en una sola",
+    "estado": "Pendiente",
+    "nota": "Versiones finales; Werkstatt como principal.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

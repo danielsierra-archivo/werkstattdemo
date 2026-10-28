@@ -1,0 +1,30 @@
+[
+  {
+    "id": "dec-01",
+    "fecha": "2026-10-04",
+    "tema": "Logos",
+    "decision": "Sistema cerrado: forma sola, madre (forma y WERKSTATT) y de línea (palabra | WERKSTATT, sin forma).",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "dec-02",
+    "fecha": "2026-10-10",
+    "tema": "ADN compartido",
+    "decision": "Documentos, web y redes son independientes y comparten marca, paleta, tipografía, atmósfera, voz y regla legal.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "dec-03",
+    "fecha": "2026-10-11",
+    "tema": "Líneas",
+    "decision": "Nombres confirmados: Rohbau, Rohholz, Rohleinen y Rohmappe.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "dec-04",
+    "fecha": "2026-10-11",
+    "tema": "Contenido",
+    "decision": "No lleva nombre de línea: va bajo la marca personal Daniel Sierra.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

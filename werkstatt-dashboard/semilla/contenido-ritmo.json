@@ -1,0 +1,20 @@
+[
+  {
+    "id": "rit-01",
+    "cuenta": "@derstahlbeton",
+    "porSemana": 3,
+    "historiasDia": 1,
+    "porMes": null,
+    "nota": "Publicaciones fijas y una historia por día.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "rit-02",
+    "cuenta": "@rohesarchiv",
+    "porSemana": null,
+    "historiasDia": null,
+    "porMes": 1,
+    "nota": "Una experiencia por mes, en orden cronológico.",
+    "creado": "2026-10-27T00:00:00.000Z"
+  }
+]

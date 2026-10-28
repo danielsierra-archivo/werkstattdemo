@@ -1,0 +1,10 @@
+{
+  "name": "werkstatt-dashboard",
+  "version": "1.0.0",
+  "description": "Panel interno local de Werkstatt. Sin dependencias.",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
